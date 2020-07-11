@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gui.Ventanas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,18 +13,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Gui.Ventanas;
 using LogicaDominio.Interfaces;
 using LogicaDominio;
 
 namespace Gui.Paginas.Secretaria
 {
     /// <summary>
-    /// Lógica de interacción para RegistroDocente.xaml
+    /// Lógica de interacción para RegistroCurso.xaml
     /// </summary>
-    public partial class RegistroDocente : Page, IRegistro
+    public partial class RegistroCurso : Page, IRegistro
     {
-        public RegistroDocente()
+        public RegistroCurso()
         {
             InitializeComponent();
         }
@@ -39,7 +39,7 @@ namespace Gui.Paginas.Secretaria
             }
         }
 
-        private void RegistrarDocente(object sender, RoutedEventArgs e)
+        private void RegistrarCurso(object sender, RoutedEventArgs e)
         {
             if (HayCamposVacios())
             {
@@ -51,7 +51,7 @@ namespace Gui.Paginas.Secretaria
             }
             else
             {
-                string mensaje = "Se registró el docente exitosamente.";
+                string mensaje = "Se registró el curso exitosamente.";
                 AdministradorVentanasDialogo.MostrarVentanaExito(mensaje);
             }
         }
@@ -60,12 +60,9 @@ namespace Gui.Paginas.Secretaria
         {
             bool hayCamposVacios = false;
 
-            if (String.IsNullOrWhiteSpace(usuario.Text) || String.IsNullOrWhiteSpace(password.Text) || 
-                String.IsNullOrWhiteSpace(nombres.Text) || String.IsNullOrWhiteSpace(apellidos.Text) ||
-                genero.SelectedItem == null || String.IsNullOrWhiteSpace(correo.Text) ||
-                String.IsNullOrWhiteSpace(numeroPersonal.Text) || fechaNacimiento.SelectedDate == null ||
-                String.IsNullOrWhiteSpace(curp.Text) || String.IsNullOrWhiteSpace(rfc.Text) ||
-                String.IsNullOrWhiteSpace(perfilProfesional.Text) || String.IsNullOrWhiteSpace(aniosExperiencia.Text))
+            if (String.IsNullOrWhiteSpace(nombre.Text) || String.IsNullOrWhiteSpace(descripcion.Text) ||
+                String.IsNullOrWhiteSpace(nrc.Text) || turno.SelectedItem == null || String.IsNullOrWhiteSpace(seccion.Text) ||
+                listaDocentes.SelectedItem == null)
             {
                 hayCamposVacios = true;
             }
@@ -77,10 +74,8 @@ namespace Gui.Paginas.Secretaria
         {
             bool hayCamposIncorrectos = false;
 
-            if (!ValidadorTexto.EsTextoCorrecto(nombres.Text) || !ValidadorTexto.EsTextoCorrecto(apellidos.Text) ||
-                !ValidadorTexto.EsTextoCorrecto(perfilProfesional.Text) || !ValidadorTexto.EsNumeroPersonal(numeroPersonal.Text) ||
-                !ValidadorTexto.EsNumeroValido(aniosExperiencia.Text) || !ValidadorTexto.EsCorreoElectronico(correo.Text) ||
-                !ValidadorTexto.EsCURP(curp.Text) || !ValidadorTexto.EsRFC(rfc.Text))
+            if (!ValidadorTexto.EsTextoCorrecto(nombre.Text) || !ValidadorTexto.EsTextoCorrecto(descripcion.Text) ||
+                !ValidadorTexto.EsTextoCorrecto(seccion.Text) || !ValidadorTexto.EsNumeroValido(nrc.Text))
             {
                 hayCamposIncorrectos = true;
             }
