@@ -10,20 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Gui.Paginas.Secretaria;
 
-namespace Gui.Ventanas
+namespace Gui.Paginas.Secretaria
 {
     /// <summary>
-    /// Lógica de interacción para Inicio.xaml
+    /// Lógica de interacción para InicioSecretaria.xaml
     /// </summary>
-    public partial class Inicio : Window
+    public partial class InicioSecretaria : Page
     {
-        public Inicio()
+        public InicioSecretaria()
         {
             InitializeComponent();
-            frameInicio.Content = new InicioSecretaria();
+        }
+
+        private void RegistrarDocente(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RegistroDocente());
         }
     }
 }

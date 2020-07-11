@@ -1,0 +1,161 @@
+﻿<Page xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"  x:Class="Gui.Paginas.Secretaria.RegistroDocente"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Gui.Paginas.Secretaria"
+      mc:Ignorable="d" 
+      d:DesignHeight="1200" d:DesignWidth="1100"
+      Height="Auto" Width="Auto"
+      Title="RegistroDocente">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" Background="White">
+        <StackPanel>
+            <StackPanel Margin="90,20,0,0">
+                <TextBlock FontSize="50" FontWeight="Bold">
+                    Registro de docente
+                </TextBlock>
+            </StackPanel>
+
+            <materialDesign:Card Width="750" Background="#36BD46" Margin="30">
+                <StackPanel>
+                    <StackPanel>
+                        <TextBlock FontSize="25" FontWeight="DemiBold" Foreground="White" Margin="30,10,0,0">
+                            Información de la cuenta
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="18" Foreground="White" Margin="70,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            Usuario (*): 
+                        </TextBlock>
+                        <TextBox x:Name="usuario" Width="200" Margin="40,20,0,0" Height="30" SelectionBrush="White"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock FontSize="18" Foreground="White" Margin="70,20,0,0" VerticalAlignment="Center">
+                            Contraseña (*):
+                        </TextBlock>
+                        <TextBox x:Name="password" Width="200" Margin="10,20,0,0" Height="30" SelectionBrush="White"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Width="750" Background="#36BD46" Margin="10">
+                <StackPanel>
+                    <StackPanel>
+                        <TextBlock FontSize="25" FontWeight="DemiBold" Foreground="White" Margin="30,10,0,0">
+                            Información personal
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="18" Foreground="White" Margin="70,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            Nombres (*):
+                        </TextBlock>
+                        <TextBox x:Name="nombres" Width="300" Margin="40,20,0,0" Height="30" 
+                                 SelectionBrush="White"
+                                 MaxLength="70"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="18" Foreground="White" Margin="70,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            Apellidos (*):
+                        </TextBlock>
+                        <TextBox x:Name="apellidos" Width="300" Margin="40,20,0,0" Height="30" 
+                                 SelectionBrush="White"
+                                 MaxLength="80"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="18" Foreground="White" Margin="70,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            Género (*):
+                        </TextBlock>
+                        <ComboBox Name="genero" Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50,10,0,0">
+                            <ComboBoxItem>Femenino</ComboBoxItem>
+                            <ComboBoxItem>Masculino</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="18" Foreground="White" Margin="70,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            Correo <LineBreak/>
+                            electrónico (*):
+                        </TextBlock>
+                        <TextBox x:Name="correo" Width="300" Margin="20,20,0,0" Height="30" 
+                                 SelectionBrush="White"
+                                 MaxLength="70"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="18" Foreground="White" Margin="70,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            Número de <LineBreak/>
+                            personal (*):
+                        </TextBlock>
+                        <TextBox x:Name="numeroPersonal" Width="200" Margin="40,20,0,0" Height="30" 
+                                 SelectionBrush="White"
+                                 MaxLength="10"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="18" Foreground="White" Margin="70,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            Fecha de <LineBreak/>
+                            nacimiento (*):
+                        </TextBlock>
+                        <DatePicker Width="200" Margin="20,30,0,0"></DatePicker>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="18" Foreground="White" Margin="70,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            CURP (*):
+                        </TextBlock>
+                        <TextBox x:Name="curp" Width="200" Margin="60,20,0,0" Height="30" 
+                                 SelectionBrush="White"
+                                 MaxLength="16"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="18" Foreground="White" Margin="70,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            RFC (*):
+                        </TextBlock>
+                        <TextBox x:Name="rfc" Width="200" Margin="70,20,0,0" Height="30" 
+                                 SelectionBrush="White"
+                                 MaxLength="13"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="18" Foreground="White" Margin="70,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            Perfil <LineBreak/>
+                            profesional (*):
+                        </TextBlock>
+                        <TextBox x:Name="perfilProfesional" Width="400" Margin="10,20,0,0" Height="120" 
+                                 SelectionBrush="White"
+                                 MaxLength="100"
+                                 TextWrapping="Wrap"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock FontSize="18" Foreground="White" Margin="70,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            Años de <LineBreak/>
+                            experiencia (*):
+                        </TextBlock>
+                        <TextBox x:Name="aniosExperiencia" Width="100" Margin="20,20,0,0" Height="30" 
+                                 SelectionBrush="White"
+                                 MaxLength="2"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:Card>
+
+            <StackPanel Margin="20" Width="750">
+                <TextBlock Text="* Campos obligatorios" FontSize="14" FontWeight="Light"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="30">
+                <Button Content="Registrar" Width="100" Background="#36BD46" BorderBrush="#36BD46"/>
+                <Button Content="Cancelar" Width="100" Margin="40,0,0,0" Background="#F60606" 
+                        BorderBrush="#F60606"
+                        Click="CancelarRegistro"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

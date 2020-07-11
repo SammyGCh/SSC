@@ -14,7 +14,7 @@
             <RowDefinition Height="361*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="LawnGreen">
+        <Grid Grid.Row="0" Background="#36BD46">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300*"/>
                 <ColumnDefinition Width="172*"/>
@@ -40,7 +40,7 @@
 
                     <materialDesign:PopupBox Foreground="White" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
 
-                        <StackPanel Width="200" Background="LawnGreen">
+                        <StackPanel Width="200" Background="#36BD46">
 
                             <StackPanel.Effect>
                                 <DropShadowEffect BlurRadius="20" RenderingBias="Quality" Color="#ccc" ShadowDepth="5" Direction="5" />
@@ -55,9 +55,9 @@
                     </materialDesign:PopupBox>
                 </StackPanel>
             </StackPanel>
-
-            <Frame Grid.Row="1" Name="frameInicio" NavigationUIVisibility="Hidden"
-               HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" x:FieldModifier="public"/>
         </Grid>
+
+        <Frame Grid.Row="1" Name="frameInicio" NavigationUIVisibility="Hidden"
+               HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" x:FieldModifier="public"/>
     </Grid>
 </Window>
