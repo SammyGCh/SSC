@@ -13,6 +13,7 @@ namespace AccesoADatos.Implementacion
         private readonly ConexionBD conexion;
         private MySqlConnection conexionMysql;
         private MySqlCommand query;
+        private MySqlDataReader reader;
 
         public CursoDAO()
         {
@@ -59,15 +60,12 @@ namespace AccesoADatos.Implementacion
         public List<Curso> GetCursosDeProfesor(String numeroDePersonal)
         {
             List<Curso> listaDeCursos = new List<Curso>();
-            MySqlConnection mySqlConnection;
-
-            MySqlCommand query;
             Curso cursoObtenido;
 
             try
             {
-                mySqlConnection = connection.OpenConnection();
-                query = new MySqlCommand("", mySqlConnection)
+                conexionMysql = conexion.AbrirConexion();
+                query = new MySqlCommand("", conexionMysql)
                 {
                     CommandText = "SELECT * FROM Curso WHERE Docente.numeroPersonal = @numeroPersonal"
                 };
@@ -85,15 +83,13 @@ namespace AccesoADatos.Implementacion
                 {
                     cursoObtenido = new Curso
                     {
-                        IdCurso = reader.GetInt32(0),
-                        Nombre = reader.GetString(1),
-                        Descripcion = reader.GetString(2),
-                        Nrc = reader.GetString(3),
-                        Status = reader.GetInt32(4),
-                        Turno = reader.GetString(5),
-                        Seccion = reader.GetString(6),
-                        IdDocente = reader.GetInt32(7),
-                        IdUsuario = reader.GetInt32(8)
+                        Nombre = reader.GetString(0),
+                        Descripcion = reader.GetString(1),
+                        Nrc = reader.GetString(2),
+                        Status = reader.GetInt32(3),
+                        Turno = reader.GetString(4),
+                        Seccion = reader.GetString(5)
+                        //ImpartidoPor = 
 
                     };
 
@@ -110,7 +106,7 @@ namespace AccesoADatos.Implementacion
                 {
                     reader.Close();
                 }
-                connection.CloseConnection();
+                conexion.CerrarConexion();
             }
 
             return listaDeCursos;

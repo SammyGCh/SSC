@@ -5,8 +5,10 @@ using DominioNegocio;
 
 namespace AccesoADatos.Interfaces
 {
-    public interface ICursoDao
+    public interface ICursoDAO
     {
+        bool GuardarCurso(Curso curso);
+
         List<Curso> GetCursosDeProfesor(String numeroDePersonal);
     }
 }
