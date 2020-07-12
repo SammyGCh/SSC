@@ -84,7 +84,7 @@
                         </TextBlock>
                         <TextBox x:Name="correo" Width="300" Margin="20,20,0,0" Height="30" 
                                  SelectionBrush="White"
-                                 MaxLength="70"/>
+                                 MaxLength="70" materialDesign:HintAssist.Hint="correo@ejemplo.com"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
@@ -94,7 +94,7 @@
                         </TextBlock>
                         <TextBox x:Name="numeroPersonal" Width="200" Margin="40,20,0,0" Height="30" 
                                  SelectionBrush="White"
-                                 MaxLength="10"/>
+                                 MaxLength="9"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
@@ -102,7 +102,7 @@
                             Fecha de <LineBreak/>
                             nacimiento (*):
                         </TextBlock>
-                        <DatePicker Width="200" Margin="20,30,0,0"></DatePicker>
+                        <DatePicker Name="fechaNacimiento" Width="200" Margin="20,30,0,0"></DatePicker>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
@@ -111,7 +111,7 @@
                         </TextBlock>
                         <TextBox x:Name="curp" Width="200" Margin="60,20,0,0" Height="30" 
                                  SelectionBrush="White"
-                                 MaxLength="16"/>
+                                 MaxLength="18"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
@@ -141,7 +141,7 @@
                         </TextBlock>
                         <TextBox x:Name="aniosExperiencia" Width="100" Margin="20,20,0,0" Height="30" 
                                  SelectionBrush="White"
-                                 MaxLength="2"/>
+                                 MaxLength="2" materialDesign:HintAssist.Hint="0"/>
                     </StackPanel>
                 </StackPanel>
             </materialDesign:Card>
@@ -151,7 +151,8 @@
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="30">
-                <Button Content="Registrar" Width="100" Background="#36BD46" BorderBrush="#36BD46"/>
+                <Button Content="Registrar" Width="100" Background="#36BD46" BorderBrush="#36BD46"
+                        Click="RegistrarDocente"/>
                 <Button Content="Cancelar" Width="100" Margin="40,0,0,0" Background="#F60606" 
                         BorderBrush="#F60606"
                         Click="CancelarRegistro"/>
