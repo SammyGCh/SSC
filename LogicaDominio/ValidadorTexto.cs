@@ -9,6 +9,7 @@ namespace LogicaDominio
     {
         private static Regex expresionRegular;
         private const int LONGITUD_MINIMA = 10;
+        private const int LONGITUD_MINIMA_NOMBRE = 2;
 
         public static bool EsExpresionCorrecta(string texto)
         {
@@ -58,6 +59,18 @@ namespace LogicaDominio
             bool esCorrecto = false;
 
             if (EsExpresionCorrecta(textoAValidar) && textoAValidar.Length > LONGITUD_MINIMA)
+            {
+                esCorrecto = true;
+            }
+
+            return esCorrecto;
+        }
+
+        public static bool EsNombreCorrecto(string nombre)
+        {
+            bool esCorrecto = false;
+
+            if (EsExpresionCorrecta(nombre) && nombre.Length > LONGITUD_MINIMA_NOMBRE)
             {
                 esCorrecto = true;
             }

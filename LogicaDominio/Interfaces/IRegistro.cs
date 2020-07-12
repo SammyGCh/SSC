@@ -8,5 +8,6 @@ namespace LogicaDominio.Interfaces
     {
         bool HayCamposVacios();
         bool HayCamposIncorrectos();
+        void LimpiarCampos();
     }
 }

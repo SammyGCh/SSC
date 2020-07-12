@@ -15,6 +15,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LogicaDominio.Interfaces;
 using LogicaDominio;
+using AccesoADatos.Implementacion;
+using DominioNegocio;
+using MySql.Data.MySqlClient;
 
 namespace Gui.Paginas.Secretaria
 {
@@ -26,6 +29,11 @@ namespace Gui.Paginas.Secretaria
         public RegistroCurso()
         {
             InitializeComponent();
+            DocenteDAO docenteDao = new DocenteDAO();
+
+            
+            List<Docente> docentesActivos = docenteDao.ObtenerDocentesActivos();
+            listaDocentes.ItemsSource = docentesActivos;
         }
 
         private void CancelarRegistro(object sender, RoutedEventArgs e)
@@ -51,9 +59,50 @@ namespace Gui.Paginas.Secretaria
             }
             else
             {
-                string mensaje = "Se registró el curso exitosamente.";
-                AdministradorVentanasDialogo.MostrarVentanaExito(mensaje);
+                string mensaje;
+                try
+                {
+                    bool guardado = GuardarCursoRegistrado();
+
+                    if (guardado)
+                    {
+                        mensaje = "Se registró el curso exitosamente.";
+                        AdministradorVentanasDialogo.MostrarVentanaExito(mensaje);
+                        LimpiarCampos();
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    AdministradorVentanasDialogo.MostrarVentanaError(ex.Message);
+                }
             }
+        }
+
+        public bool GuardarCursoRegistrado()
+        {
+            Curso nuevoCurso = new Curso()
+            {
+                Nombre = nombre.Text,
+                Descripcion = descripcion.Text,
+                Nrc = nrc.Text,
+                Turno = turno.Text,
+                Seccion = seccion.Text,
+                ImpartidoPor = listaDocentes.SelectedItem as Docente
+            };
+
+            AdministradorCurso administradorCurso = new AdministradorCurso();
+
+            bool guardado;
+            try
+            {
+                guardado = administradorCurso.RegistrarNuevoCurso(nuevoCurso);
+            }
+            catch (MySqlException)
+            {
+                throw;
+            }
+
+            return guardado;
         }
 
         public bool HayCamposVacios()
@@ -75,12 +124,22 @@ namespace Gui.Paginas.Secretaria
             bool hayCamposIncorrectos = false;
 
             if (!ValidadorTexto.EsTextoCorrecto(nombre.Text) || !ValidadorTexto.EsTextoCorrecto(descripcion.Text) ||
-                !ValidadorTexto.EsTextoCorrecto(seccion.Text) || !ValidadorTexto.EsNumeroValido(nrc.Text))
+                !ValidadorTexto.EsNumeroValido(seccion.Text) || !ValidadorTexto.EsNumeroValido(nrc.Text))
             {
                 hayCamposIncorrectos = true;
             }
 
             return hayCamposIncorrectos;
+        }
+
+        public void LimpiarCampos()
+        {
+            nombre.Clear();
+            descripcion.Clear();
+            nrc.Clear();
+            turno.SelectedItem = null;
+            seccion.Clear();
+            listaDocentes.SelectedItem = null;
         }
     }
 }

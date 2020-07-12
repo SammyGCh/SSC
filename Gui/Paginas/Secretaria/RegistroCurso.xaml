@@ -60,7 +60,7 @@
                         </TextBlock>
                         <ComboBox Name="turno" Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50,10,0,0">
                             <ComboBoxItem>Vespertino</ComboBoxItem>
-                            <ComboBoxItem>Matutinoo</ComboBoxItem>
+                            <ComboBoxItem>Matutino</ComboBoxItem>
                         </ComboBox>
                     </StackPanel>
 
@@ -70,14 +70,29 @@
                         </TextBlock>
                         <TextBox x:Name="seccion" Width="200" Margin="35,20,0,0" Height="30" 
                                  SelectionBrush="White"
-                                 MaxLength="70"/>
+                                 MaxLength="70" materialDesign:HintAssist.Hint="0"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
                         <TextBlock FontSize="18" Foreground="White" Margin="70,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
                             Docente (*):
                         </TextBlock>
-                        <ComboBox Name="listaDocentes" Width="300" Margin="30,20,0,0"/>
+                        <ComboBox Name="listaDocentes" Width="300" Margin="30,20,0,0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock>
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}{0} {1}">
+                                                    <Binding Path="Nombres"/>
+                                                    <Binding Path="Apellidos"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </StackPanel>
                 </StackPanel>
             </materialDesign:Card>

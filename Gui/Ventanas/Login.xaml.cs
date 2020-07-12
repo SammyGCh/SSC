@@ -23,5 +23,17 @@ namespace Gui.Ventanas
         {
             InitializeComponent();
         }
+
+        private void HabilitarBoton(object sender, RoutedEventArgs e)
+        {
+            if (usuario.Text.Length == 0 || password.Password.Length == 0)
+            {
+                botonLogin.IsEnabled = false;
+            }
+            else
+            {
+                botonLogin.IsEnabled = true;
+            }
+        }
     }
 }
