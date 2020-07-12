@@ -6,23 +6,15 @@ namespace DominioNegocio
 {
     public class Curso
     {
-        private int idCurso;
-        private String nombre;
-        private String descripcion;
-        private String nrc;
-        private int status;
-        private String turno;
-        private String seccion;
-        private int idDocente;
-        private int idUsuario;
+        private string nombre;
+        private string descripcion;
+        private string nrc;
+        private int status = 1;
+        private string turno;
+        private string seccion;
+        private Docente impartidoPor;
 
-        public int IdCurso
-        {
-            get => idCurso;
-            set => idCurso = value;
-        }
-
-        public String Nombre
+        public string Nombre
         {
             get => nombre;
             set => nombre = value;
@@ -58,16 +50,10 @@ namespace DominioNegocio
             set => seccion = value;
         }
 
-        public int IdDocente
+        public Docente ImpartidoPor
         {
-            get => idDocente;
-            set => idDocente = value;
-        }
-
-        public int IdUsuario
-        {
-            get => idUsuario;
-            set => idUsuario = value;
+            get => impartidoPor;
+            set => impartidoPor = value;
         }
     }
 }

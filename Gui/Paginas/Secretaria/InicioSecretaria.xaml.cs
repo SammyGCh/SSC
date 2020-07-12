@@ -29,5 +29,10 @@ namespace Gui.Paginas.Secretaria
         {
             NavigationService.Navigate(new RegistroDocente());
         }
+
+        private void RegistrarCurso(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RegistroCurso());
+        }
     }
 }
