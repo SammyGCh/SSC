@@ -10,21 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Gui.Paginas.Profesor;
-using Gui.Paginas.Secretaria;
 
-namespace Gui.Ventanas
+namespace Gui.Paginas.Profesor
 {
     /// <summary>
-    /// Lógica de interacción para Inicio.xaml
+    /// Lógica de interacción para ListaDePlanesDeCurso.xaml
     /// </summary>
-    public partial class Inicio : Window
+    public partial class ListaDePlanesDeCurso : Page
     {
-        public Inicio()
+        public ListaDePlanesDeCurso()
         {
             InitializeComponent();
-            frameInicio.Content = new InicioProfesor();
+        }
+
+        private void Cancel(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

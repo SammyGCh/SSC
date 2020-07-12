@@ -63,6 +63,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Paginas\Profesor\InicioProfesor.xaml.cs">
+      <DependentUpon>InicioProfesor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Profesor\ListaDeCursos.xaml.cs">
+      <DependentUpon>ListaDeCursos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Profesor\ListaDePlanesDeCurso.xaml.cs">
+      <DependentUpon>ListaDePlanesDeCurso.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Secretaria\InicioSecretaria.xaml.cs">
       <DependentUpon>InicioSecretaria.xaml</DependentUpon>
     </Compile>
@@ -85,6 +94,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Paginas\Profesor\InicioProfesor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Profesor\ListaDeCursos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Profesor\ListaDePlanesDeCurso.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Paginas\Secretaria\InicioSecretaria.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
