@@ -10,6 +10,7 @@ namespace DominioNegocio
         private String cambiosSolicitados;
         private String fecha;
         private int status;
+        private int planDeCurso;
 
         public int IdSolicitudCambio
         {
@@ -33,6 +34,12 @@ namespace DominioNegocio
         {
             get => status;
             set => status = value;
+        }
+
+        public int PlanDeCurso
+        {
+            get => planDeCurso;
+            set => planDeCurso = value;
         }
 
     }
