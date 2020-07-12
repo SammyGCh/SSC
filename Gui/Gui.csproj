@@ -72,6 +72,9 @@
     <Compile Include="Paginas\Profesor\ListaDePlanesDeCurso.xaml.cs">
       <DependentUpon>ListaDePlanesDeCurso.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Profesor\RegistroDeSolicitud.xaml.cs">
+      <DependentUpon>RegistroDeSolicitud.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Secretaria\InicioSecretaria.xaml.cs">
       <DependentUpon>InicioSecretaria.xaml</DependentUpon>
     </Compile>
@@ -103,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Paginas\Profesor\ListaDePlanesDeCurso.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Profesor\RegistroDeSolicitud.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
