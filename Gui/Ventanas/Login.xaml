@@ -43,7 +43,8 @@
         </StackPanel>
 
         <StackPanel>
-            <Button x:Name="botonLogin" Content="Iniciar sesión" Width="120" Background="#386BEC" BorderBrush="#386BEC" IsEnabled="False"/>
+            <Button x:Name="botonLogin" Content="Iniciar sesión" Width="120" Background="#386BEC" BorderBrush="#386BEC" IsEnabled="False"
+                    Click="IniciarSesion"/>
         </StackPanel>
     </StackPanel>
 </Window>

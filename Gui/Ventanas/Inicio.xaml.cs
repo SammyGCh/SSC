@@ -20,10 +20,10 @@ namespace Gui.Ventanas
     /// </summary>
     public partial class Inicio : Window
     {
-        public Inicio()
+        public Inicio(Page paginaInicio)
         {
             InitializeComponent();
-            frameInicio.Content = new InicioSecretaria();
+            frameInicio.Content = paginaInicio;
         }
     }
 }
