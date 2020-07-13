@@ -13,6 +13,7 @@ namespace AccesoADatos.Implementacion
         private readonly ConexionBD conexion;
         private MySqlConnection conexionMysql;
         private MySqlCommand query;
+        private MySqlDataReader reader;
         private const int ACTIVO = 1;
 
         public CuentaDAO()
@@ -52,6 +53,47 @@ namespace AccesoADatos.Implementacion
             }
 
             return guardado;
+        }
+
+        public int ExisteCuenta(string username, string password)
+        {
+            int existe = 0;
+
+            try
+            {
+                conexionMysql = conexion.AbrirConexion();
+                query = new MySqlCommand("", conexionMysql)
+                {
+                    CommandText = "SELECT COUNT(cuenta.username), cuenta.password, cuenta.status FROM cuenta WHERE cuenta.username = @username AND " +
+                    "cuenta.password = @password AND cuenta.status = @status"
+                };
+
+                query.Parameters.Add("@username", MySqlDbType.VarChar, 45).Value = username;
+                query.Parameters.Add("@password", MySqlDbType.VarChar, 255).Value = password;
+                query.Parameters.Add("@status", MySqlDbType.Int32, 2).Value = ACTIVO;
+
+                reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    existe = reader.GetInt32(0);
+                }
+            }
+            catch (MySqlException)
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+                conexion.CerrarConexion();
+            }
+
+            return existe;
         }
     }
 }
