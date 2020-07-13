@@ -16,6 +16,7 @@ namespace AccesoADatos.Implementacion
         private MySqlCommand query;
         private MySqlDataReader reader;
         private const int TIPO_DOCENTE = 4;
+        private TipoUsuarioDAO administradorTipoUsuario;
 
         public UsuarioDAO()
         {
@@ -36,7 +37,7 @@ namespace AccesoADatos.Implementacion
 
                 reader = query.ExecuteReader();
 
-                TipoUsuarioDAO administradorTipoUsuario = new TipoUsuarioDAO();
+                administradorTipoUsuario = new TipoUsuarioDAO();
 
                 while (reader.Read())
                 {
@@ -178,6 +179,55 @@ namespace AccesoADatos.Implementacion
             }
 
             return guardado;
+        }
+
+        public Usuario ObtenerUsuarioPorCuenta(Cuenta cuenta)
+        {
+            usuario = null;
+
+            try
+            {
+                conexionMysql = conexion.AbrirConexion();
+                query = new MySqlCommand("", conexionMysql)
+                {
+                    CommandText = "SELECT usuario.idusuario, usuario.nombres, usuario.apellidos, usuario.idtipousuario, cuenta.username, " +
+                    "cuenta.password, cuenta.idusuario FROM usuario, cuenta WHERE cuenta.idusuario = usuario.idusuario AND " +
+                    "cuenta.username = @username AND cuenta.password = @password"
+                };
+
+                query.Parameters.Add("@username", MySqlDbType.VarChar, 45).Value = cuenta.Username;
+                query.Parameters.Add("@password", MySqlDbType.VarChar, 255).Value = cuenta.Password;
+
+                reader = query.ExecuteReader();
+
+                administradorTipoUsuario = new TipoUsuarioDAO();
+
+                while (reader.Read())
+                {
+                    usuario = new Usuario
+                    {
+                        IdUsuario = reader.GetInt32(0),
+                        Nombres = reader.GetString(1),
+                        Apellidos = reader.GetString(2),
+                        Pertenece = administradorTipoUsuario.ObtenerTipoUsuarioPorId(reader.GetInt32(3))
+                    };
+                }
+            }
+            catch (MySqlException)
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+                conexion.CerrarConexion();
+            }
+
+            return usuario;
         }
     }
 }
