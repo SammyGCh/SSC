@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Gui.Paginas.Profesor;
 using Gui.Paginas.Secretaria;
 
 namespace Gui.Ventanas
