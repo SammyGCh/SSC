@@ -101,7 +101,11 @@ namespace Gui.Ventanas
                         break;
                 }
 
-                Inicio ventanaInicio = new Inicio(ventanaInicioDeUsuario);
+                Inicio ventanaInicio = new Inicio(ventanaInicioDeUsuario)
+                {
+                    DataContext = usuarioIngresado
+                };
+
                 ventanaInicio.Show();
                 this.Close();
             }
