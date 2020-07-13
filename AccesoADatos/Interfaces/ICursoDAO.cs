@@ -9,6 +9,8 @@ namespace AccesoADatos.Interfaces
     {
         bool GuardarCurso(Curso curso);
 
-        List<Curso> GetCursosDeProfesor(String numeroDePersonal);
+        List<Curso> GetCursosDeProfesor(int idDocente);
+
+        bool ProfesorTieneCursos(int idDocente);
     }
 }

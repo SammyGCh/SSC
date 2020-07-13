@@ -57,7 +57,7 @@ namespace AccesoADatos.Implementacion
             return guardado;
         }
 
-        public List<Curso> GetCursosDeProfesor(String numeroDePersonal)
+        public List<Curso> GetCursosDeProfesor(int idDocente)
         {
             List<Curso> listaDeCursos = new List<Curso>();
             Curso cursoObtenido;
@@ -67,12 +67,21 @@ namespace AccesoADatos.Implementacion
                 conexionMysql = conexion.AbrirConexion();
                 query = new MySqlCommand("", conexionMysql)
                 {
-                    CommandText = "SELECT * FROM Curso WHERE Docente.numeroPersonal = @numeroPersonal"
+                    CommandText = "SELECT " +
+                    "curso.idcurso, " +
+                    "curso.nombre, " +
+                    "curso.descripcion, " +
+                    "curso.nrc, " +
+                    "curso.status, " +
+                    "curso.turno, " +
+                    "curso.seccion " +
+                    "FROM curso " +
+                    "WHERE curso.docente_iddocente = @idDocente;"
                 };
 
-                MySqlParameter personal = new MySqlParameter("@numeroPersonal", MySqlDbType.VarChar, 10)
+                MySqlParameter personal = new MySqlParameter("@idDocente", MySqlDbType.Int32, 11)
                 {
-                    Value = numeroDePersonal
+                    Value = idDocente
                 };
 
                 query.Parameters.Add(personal);
@@ -83,14 +92,13 @@ namespace AccesoADatos.Implementacion
                 {
                     cursoObtenido = new Curso
                     {
-                        Nombre = reader.GetString(0),
-                        Descripcion = reader.GetString(1),
-                        Nrc = reader.GetString(2),
-                        Status = reader.GetInt32(3),
-                        Turno = reader.GetString(4),
-                        Seccion = reader.GetString(5)
-                        //ImpartidoPor = 
-
+                        IdCurso = reader.GetInt32(0),
+                        Nombre = reader.GetString(1),
+                        Descripcion = reader.GetString(2),
+                        Nrc = reader.GetString(3),
+                        Status = reader.GetInt32(4),
+                        Turno = reader.GetString(5),
+                        Seccion = reader.GetString(6)
                     };
 
                     listaDeCursos.Add(cursoObtenido);
@@ -110,6 +118,60 @@ namespace AccesoADatos.Implementacion
             }
 
             return listaDeCursos;
+        }
+
+        public bool ProfesorTieneCursos(int idDocente)
+        {
+            List<Curso> listaDeCursos = new List<Curso>();
+            Curso cursoObtenido;
+            bool hayCursos = false;
+
+            try
+            {
+                conexionMysql = conexion.AbrirConexion();
+                query = new MySqlCommand("", conexionMysql)
+                {
+                    CommandText = "SELECT Curso.idCurso, Curso.nombre, Curso.Descripcion, Curso.Turno FROM Curso WHERE curso.docente_iddocente = @idDocente;"
+                };
+
+                MySqlParameter personal = new MySqlParameter("@idDocente", MySqlDbType.Int32, 11)
+                {
+                    Value = idDocente
+                };
+
+                query.Parameters.Add(personal);
+
+                reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    cursoObtenido = new Curso
+                    {
+                        IdCurso = reader.GetInt32(0),
+                        Nombre = reader.GetString(1),
+                        Descripcion = reader.GetString(2),
+                        Turno = reader.GetString(3)
+                    };
+
+                    listaDeCursos.Add(cursoObtenido);
+                }
+
+                hayCursos = (listaDeCursos.Count > 0);
+            }
+            catch (MySqlException ex)
+            {
+
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+                conexion.CerrarConexion();
+            }
+
+            return hayCursos;
         }
     }
 }

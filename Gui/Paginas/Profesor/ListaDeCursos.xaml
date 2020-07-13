@@ -14,7 +14,7 @@
             VerticalAlignment="Top" FontSize="40" FontWeight="Bold" RenderTransformOrigin="0.508,0.142" Height="54" Width="514"/>
 
             <StackPanel Margin="80">
-                <DataGrid x:Name="mensualReportsTable" HorizontalAlignment="Center" Height="445"  VerticalAlignment="Top" Width="1100" AutoGenerateColumns="False" Background="#FFFAFAFA" 
+                <DataGrid x:Name="tablaDeCursos" HorizontalAlignment="Center" Height="445"  VerticalAlignment="Top" Width="1100" AutoGenerateColumns="False" Background="#FFFAFAFA" 
                   CanUserAddRows="false" ScrollViewer.HorizontalScrollBarVisibility="Disabled" RowHeight="100" AlternatingRowBackground="AliceBlue">
                     <DataGrid.Columns>
 
@@ -29,7 +29,7 @@
                             </DataGridTemplateColumn.HeaderStyle>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding MensualReportName}" TextWrapping="WrapWithOverflow"/>
+                                    <TextBlock Text="{Binding Nombre}" TextWrapping="WrapWithOverflow"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -45,7 +45,7 @@
                             </DataGridTemplateColumn.HeaderStyle>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding MensualReportName}" TextWrapping="WrapWithOverflow"/>
+                                    <TextBlock Text="{Binding Descripcion}" TextWrapping="WrapWithOverflow"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -61,7 +61,7 @@
                             </DataGridTemplateColumn.HeaderStyle>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding MonthReportedDate}" TextWrapping="WrapWithOverflow"/>
+                                    <TextBlock Text="{Binding Turno}" TextWrapping="WrapWithOverflow"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -70,7 +70,7 @@
                         <DataGridTemplateColumn  Header="Opciones" Width="350" CanUserResize="False" IsReadOnly="True" CanUserReorder="False" MaxWidth="350">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Ver planes" Name="details" Width ="100" MinWidth="100" HorizontalAlignment="Left"/>
+                                    <Button Content="Ver planes" Name="details" Width ="100" MinWidth="100" HorizontalAlignment="Left" Click="VerPlanes"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
 

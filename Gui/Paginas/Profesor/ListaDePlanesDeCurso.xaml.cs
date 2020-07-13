@@ -1,17 +1,9 @@
-﻿using System;
+﻿using AccesoADatos.Implementacion;
+using DominioNegocio;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Gui.Paginas.Profesor
 {
@@ -20,14 +12,25 @@ namespace Gui.Paginas.Profesor
     /// </summary>
     public partial class ListaDePlanesDeCurso : Page
     {
-        public ListaDePlanesDeCurso()
+        public ListaDePlanesDeCurso(int idCurso)
         {
             InitializeComponent();
+
+            PlanDeCursoDAO planDAO = new PlanDeCursoDAO();
+            List<PlanDeCurso> listaDeCursos = planDAO.ObtenerPlanesPorCurso(idCurso);
+            tablaDePlanes.ItemsSource = listaDeCursos;
         }
 
         private void Cancel(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void SolicitarActualizacion(object sender, RoutedEventArgs e)
+        {
+            PlanDeCurso cursoSeleccionado = (PlanDeCurso)tablaDePlanes.SelectedItem;
+
+            NavigationService.Navigate(new RegistroDeSolicitud(cursoSeleccionado.IdPlanDeCurso));
         }
     }
 }
