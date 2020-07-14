@@ -8,5 +8,7 @@ namespace AccesoADatos.Interfaces
     public interface ISolicitudCambioDAO
     {
         bool RegistrarSolicitud(SolicitudCambio nuevaSolicitud);
+
+        bool ExisteSolicitudPendiente(int idPlan);
     }
 }

@@ -20,6 +20,46 @@ namespace AccesoADatos.Implementacion
             conexion = new ConexionBD();
         }
 
+        public bool ExisteSolicitudPendiente(int idPlan)
+        {
+            bool existe = false;
+
+            try
+            {
+                conexionMysql = conexion.AbrirConexion();
+                query = new MySqlCommand("", conexionMysql)
+                {
+                    CommandText = "SELECT " +
+                    "count(solicitudcambio.idsolicitudcambio) " +
+                    "from solicitudcambio,plandecurso " +
+                    "where solicitudcambio.idplandecurso = @idPlanDeCurso;"
+                };
+
+                query.Parameters.Add("@idPlanDeCurso", MySqlDbType.Int32, 11).Value = idPlan;
+
+                reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    if (reader.GetInt32(0) != 0)
+                    {
+                        existe = true;
+                    }
+                }
+
+            }
+            catch (MySqlException)
+            {
+                throw;
+            }
+            finally
+            {
+                conexion.CerrarConexion();
+            }
+
+            return existe;
+        }
+
         public bool RegistrarSolicitud(SolicitudCambio nuevaSolicitud)
         {
             bool guardado = false;
