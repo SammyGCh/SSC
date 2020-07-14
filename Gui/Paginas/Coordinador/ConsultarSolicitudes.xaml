@@ -1,0 +1,160 @@
+﻿<Page x:Class="Gui.Paginas.Coordinador.ConsultarSolicitudes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      Title="ConsultarSolicitudes" Width="Auto" Height="Auto" WindowTitle="Inicio" d:DesignWidth="1300" d:DesignHeight="1000">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+        <StackPanel Background="White" Height="700">
+            <TextBlock HorizontalAlignment="Left" Margin="100,10,0,0" TextWrapping="Wrap" Text="Lista De Solicitudes De Cambio En Plan De Curso" 
+            VerticalAlignment="Top" FontSize="40" FontWeight="Bold" RenderTransformOrigin="0.508,0.142" Height="54" Width="945"/>
+
+            <StackPanel Margin="50">
+                <DataGrid x:Name="tablaDeSolicitudes" HorizontalAlignment="Center" Height="420"  VerticalAlignment="Top" Width="997"
+                          AutoGenerateColumns="False" Background="#FFFAFAFA" CanUserAddRows="false" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                          RowHeight="55" AlternatingRowBackground="AliceBlue">
+                    <DataGrid.Columns>
+
+                        <DataGridTemplateColumn Header=" Fecha" Width ="125" MinWidth="100" MaxWidth="200" 
+                                                CanUserResize="False" CanUserSort="False" IsReadOnly="True" CanUserReorder="False">
+                            <DataGridTemplateColumn.HeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="#FF5BA1DA"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontSize" Value="24"/>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTemplateColumn.HeaderStyle>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Fecha}" TextWrapping="WrapWithOverflow"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Status" Width ="120"  CanUserResize="False" 
+                                                CanUserReorder="False" IsReadOnly="True" >
+                            <DataGridTemplateColumn.HeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="#FF5BA1DA"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontSize" Value="24"/>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTemplateColumn.HeaderStyle>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="WrapWithOverflow">
+                                        <TextBlock.Style>
+                                            <Style>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Status}" Value="0">
+                                                        <Setter Property="TextBlock.Text" Value="Pendiente"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Status}" Value="1">
+                                                        <Setter Property="TextBlock.Text" Value="Aprobado"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Status}" Value="2">
+                                                        <Setter Property="TextBlock.Text" Value="Rechazado"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Nombre De Plan De Curso"  Width ="350" CanUserResize="False" 
+                                                CanUserSort="False" IsReadOnly="True" CanUserReorder="False">
+                            <DataGridTemplateColumn.HeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="#FF5BA1DA"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontSize" Value="24"/>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTemplateColumn.HeaderStyle>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding PlanDeCurso}" TextWrapping="WrapWithOverflow"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Nombre Del Professor" Width ="260" MinWidth="130" 
+                                                CanUserResize="False" CanUserReorder="False" IsReadOnly="True" >
+                            <DataGridTemplateColumn.HeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="#FF5BA1DA"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontSize" Value="24"/>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTemplateColumn.HeaderStyle>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding PlanDeCurso}" TextWrapping="WrapWithOverflow"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn  Header="Opciones" Width="250" CanUserResize="False" 
+                                                 IsReadOnly="True" CanUserReorder="False" MaxWidth="150">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Detalles" Name="details" Width ="100" MinWidth="100"
+                                            HorizontalAlignment="Left" Click="DisplayAcademicData"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+                            <DataGridTemplateColumn.HeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="#FF5BA1DA"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontSize" Value="24"/>
+                                </Style>
+                            </DataGridTemplateColumn.HeaderStyle>
+                        </DataGridTemplateColumn  >
+
+                        <DataGridTemplateColumn  Header="77" Width ="142" MinWidth="100" 
+                                                 CanUserResize="False" IsReadOnly="True" CanUserReorder="False">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Status}" Value="0">
+                                            <Setter Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                    <Button Name="update" Width ="100"
+                                            HorizontalAlignment="Left" Click="UpdateAcademicData" Content="Actualizar"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+                            <DataGridTemplateColumn.HeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="#FF5BA1DA"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontSize" Value="24"/>
+                                </Style>
+                            </DataGridTemplateColumn.HeaderStyle>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="20" Width="750">
+                <Button x:Name="returnButton" Width="115" Margin="250,0,0,0" Cursor="Hand" IsEnabled="True" 
+                            Click="RegresarAInicio">
+                    <StackPanel Orientation="Horizontal" Width="110" HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Create" Margin="3,3.5,1,1" Width="30"/>
+                        <TextBlock Text="Regresar"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

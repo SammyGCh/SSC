@@ -41,6 +41,5 @@ namespace DominioNegocio
             get => planDeCurso;
             set => planDeCurso = value;
         }
-
     }
 }

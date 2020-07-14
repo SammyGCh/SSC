@@ -111,5 +111,60 @@ namespace AccesoADatos.Implementacion
 
             return listaDeCursos;
         }
+
+        public List<Curso> GetCurso(String numeroDePersonal)
+        {
+            List<Curso> listaDeCursos = new List<Curso>();
+            Curso cursoObtenido;
+
+            try
+            {
+                conexionMysql = conexion.AbrirConexion();
+                query = new MySqlCommand("", conexionMysql)
+                {
+                    CommandText = "SELECT * FROM Curso WHERE Docente.numeroPersonal = @numeroPersonal"
+                };
+
+                MySqlParameter personal = new MySqlParameter("@numeroPersonal", MySqlDbType.VarChar, 10)
+                {
+                    Value = numeroDePersonal
+                };
+
+                query.Parameters.Add(personal);
+
+                reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    cursoObtenido = new Curso
+                    {
+                        Nombre = reader.GetString(0),
+                        Descripcion = reader.GetString(1),
+                        Nrc = reader.GetString(2),
+                        Status = reader.GetInt32(3),
+                        Turno = reader.GetString(4),
+                        Seccion = reader.GetString(5)
+                        //ImpartidoPor = 
+
+                    };
+
+                    listaDeCursos.Add(cursoObtenido);
+                }
+            }
+            catch (MySqlException ex)
+            {
+
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+                conexion.CerrarConexion();
+            }
+
+            return listaDeCursos;
+        }
     }
 }
