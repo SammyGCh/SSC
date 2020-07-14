@@ -28,9 +28,22 @@ namespace Gui.Paginas.Profesor
 
         private void SolicitarActualizacion(object sender, RoutedEventArgs e)
         {
-            PlanDeCurso cursoSeleccionado = (PlanDeCurso)tablaDePlanes.SelectedItem;
+            MessageBoxResult esConfirmado = MessageBox.Show("¿Seguro deseas enviar esta solicitud?", "Confirmacion", MessageBoxButton.YesNo, MessageBoxImage.Information);
 
-            NavigationService.Navigate(new RegistroDeSolicitud(cursoSeleccionado.IdPlanDeCurso));
+            if (esConfirmado == MessageBoxResult.Yes)
+            {
+                PlanDeCurso cursoSeleccionado = (PlanDeCurso)tablaDePlanes.SelectedItem;
+                SolicitudCambioDAO solicitudes = new SolicitudCambioDAO();
+
+                if (!solicitudes.ExisteSolicitudPendiente(cursoSeleccionado.IdPlanDeCurso))
+                {
+                    NavigationService.Navigate(new RegistroDeSolicitud(cursoSeleccionado.IdPlanDeCurso));
+                }
+                else
+                {
+                    MessageBox.Show("Ya existe una solicitud pendiente para este plan", "Solicitud existente", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
         }
     }
 }
