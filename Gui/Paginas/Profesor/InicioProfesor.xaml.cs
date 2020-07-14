@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AccesoADatos.Implementacion;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Gui.Paginas.Profesor
 {
@@ -20,14 +10,34 @@ namespace Gui.Paginas.Profesor
     /// </summary>
     public partial class InicioProfesor : Page
     {
-        public InicioProfesor()
+        private int idDocente;
+
+        public InicioProfesor(int idDocente)
         {
             InitializeComponent();
+            this.idDocente = idDocente;
         }
 
         private void ConsultarMisCursos(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ListaDeCursos());
+            if (CursosDisponibles())
+            {
+                NavigationService.Navigate(new ListaDeCursos(idDocente));
+            }
+            else
+            {
+                MessageBox.Show("No tienes cursos registrados","Opcion no disponible",MessageBoxButton.OK,MessageBoxImage.Exclamation);
+            }
+        }
+
+        private bool CursosDisponibles()
+        {
+            bool hayCursos;
+
+            CursoDAO cursoDAO = new CursoDAO();
+            hayCursos = cursoDAO.ProfesorTieneCursos(idDocente);
+
+            return hayCursos;
         }
     }
 }

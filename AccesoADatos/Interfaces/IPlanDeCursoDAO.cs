@@ -7,6 +7,8 @@ namespace AccesoADatos.Interfaces
 {
     public interface IPlanDeCursoDAO
     {
-        List<PlanDeCurso> ObtenerPlanesPorCurso(String nombre);
+        List<PlanDeCurso> ObtenerPlanesPorCurso(int idCurso);
+
+        bool CursoTienePlanes(int idCurso);
     }
 }

@@ -10,6 +10,7 @@ namespace AccesoADatos.Interfaces
         Usuario ObtenerUsuarioPorId(int idUsuario);
         int ObtenerIdUsuarioPorNombre(string nombre);
         Usuario ObtenerUltimoUsuarioRegistrado();
+        Usuario ObtenerUsuarioPorCuenta(Cuenta cuenta);
         bool GuardarUsuario(Usuario usuario);
     }
 }

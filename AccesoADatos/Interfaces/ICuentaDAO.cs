@@ -8,5 +8,6 @@ namespace AccesoADatos.Interfaces
     public interface ICuentaDAO
     {
         bool GuardarCuenta(Cuenta cuenta);
+        int ExisteCuenta(string username, string password);
     }
 }

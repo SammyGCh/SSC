@@ -6,6 +6,7 @@ namespace DominioNegocio
 {
     public class Curso
     {
+        private int idCurso;
         private string nombre;
         private string descripcion;
         private string nrc;
@@ -13,6 +14,12 @@ namespace DominioNegocio
         private string turno;
         private string seccion;
         private Docente impartidoPor;
+
+        public int IdCurso
+        {
+            get => idCurso;
+            set => idCurso = value;
+        }
 
         public string Nombre
         {

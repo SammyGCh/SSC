@@ -22,7 +22,7 @@
                                         Ingresa los cambios que deseas hacer
                         </TextBlock>
 
-                        <TextBox x:Name="documentDescription" Width="600" TextWrapping="Wrap" Margin="0,15,0,20" MaxLength="500" ></TextBox>
+                        <TextBox x:Name="cambiosSolicitados" Width="600" TextWrapping="Wrap" Margin="0,15,0,20" MaxLength="500" ></TextBox>
 
                     </StackPanel>
 

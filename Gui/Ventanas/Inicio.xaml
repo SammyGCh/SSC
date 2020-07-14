@@ -34,9 +34,16 @@
             <StackPanel Grid.Column="1">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <materialDesign:PackIcon Kind="Person" Width="60" Height="60" Foreground="White"/>
-                    <TextBlock Text="María del Carmen Rodriguez Lopez" FontSize="20" Foreground="White" 
+                    <TextBlock FontSize="20" Foreground="White" 
                            TextAlignment="Center"
-                           Margin="0,15,0,0"/>
+                           Margin="0,15,0,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="Nombres"/>
+                                <Binding Path="Apellidos"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
 
                     <materialDesign:PopupBox Foreground="White" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
 

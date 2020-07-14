@@ -1,17 +1,9 @@
-﻿using System;
+﻿using AccesoADatos.Implementacion;
+using DominioNegocio;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Gui.Paginas.Profesor
 {
@@ -20,14 +12,43 @@ namespace Gui.Paginas.Profesor
     /// </summary>
     public partial class ListaDeCursos : Page
     {
-        public ListaDeCursos()
+        private int idDocente;
+        public ListaDeCursos(int idDocente)
         {
             InitializeComponent();
+            this.idDocente = idDocente;
+            CursoDAO cursoDAO = new CursoDAO();
+            List<Curso> listaDeCursos = cursoDAO.GetCursosDeProfesor(idDocente);
+            tablaDeCursos.ItemsSource = listaDeCursos;
         }
 
         private void Cancel(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void VerPlanes(object sender, RoutedEventArgs e)
+        {
+            Curso cursoSeleccionado = (Curso)tablaDeCursos.SelectedItem;
+
+            if (PlanesDisponibles(cursoSeleccionado.IdCurso))
+            {
+                NavigationService.Navigate(new ListaDePlanesDeCurso(cursoSeleccionado.IdCurso));
+            }
+            else
+            {
+                MessageBox.Show("Este curso no cuenta con planes disponibles", "Opcion no disponible", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
+        private bool PlanesDisponibles(int idCurso)
+        {
+            bool hayplanes;
+            PlanDeCursoDAO dao = new PlanDeCursoDAO();
+
+            hayplanes = dao.CursoTienePlanes(idCurso);
+
+            return hayplanes;
         }
     }
 }
