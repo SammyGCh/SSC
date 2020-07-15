@@ -64,7 +64,7 @@
 
                         <StackPanel Orientation="Horizontal" Width="300" Margin="10,10,125,0" Height="95">
                             <TextBlock Text="Referencias: " Margin="16,2,3,0" FontSize="14" TextAlignment="Right"/>
-                            <TextBlock Text="{Binding PlanOriginal.Referencias}" Width="175" TextWrapping="Wrap" Height="95" Margin="0,0,0,-0.2" />
+                            <TextBlock Text="{Binding PlanOriginal.Referencias}" Width="145" TextWrapping="Wrap" Height="95" Margin="0,0,0,-0.2" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="15,1,78.2,0" Height="25">
@@ -107,7 +107,7 @@
 
                         <StackPanel Orientation="Horizontal" Width="480" Margin="10,0,125,0" Height="95">
                             <TextBlock Text="Referencias: " Margin="16,2,3,0" FontSize="14" TextAlignment="Right"/>
-                            <TextBlock Text="{Binding PlanDeCurso.Referencias}" Width="175" TextWrapping="Wrap" Height="95" Margin="0,0,0,-0.2" />
+                            <TextBlock Text="{Binding PlanDeCurso.Referencias}" Width="145" TextWrapping="Wrap" Height="95" Margin="0,0,0,-0.2" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="15,1,78.2,0" Height="25">

@@ -24,5 +24,15 @@ namespace Gui.Paginas.Coordinador
         {
             NavigationService.Navigate(new ConsultarSolicitudes());
         }
+
+        private void ConsultarReportes(object sender, RoutedEventArgs e)
+        {
+            AdministradorVentanasDialogo.MostrarVentanaError("No se ha implementado esta funcionalidad");
+        }
+
+        private void ConsultarDocentes(object sender, RoutedEventArgs e)
+        {
+            AdministradorVentanasDialogo.MostrarVentanaError("No se ha implementado esta funcionalidad");
+        }
     }
 }
