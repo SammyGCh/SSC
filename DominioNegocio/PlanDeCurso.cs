@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DominioNegocio
 {
@@ -12,6 +11,8 @@ namespace DominioNegocio
         private String referencias;
         private List<CriterioEvaluacion> listaDeCriterios;
         private List<Tema> listaDeTemas;
+        private Curso curso;
+        private String nombre;
 
         public int IdPlanDeCurso
         {
@@ -47,6 +48,18 @@ namespace DominioNegocio
         {
             get => listaDeTemas;
             set => listaDeTemas = value;
+        }
+
+        public Curso Curso
+        {
+            get => curso;
+            set => curso = value;
+        }   
+        
+        public String Nombre
+        {
+            get => nombre;
+            set => nombre = value;
         }
     }
 }

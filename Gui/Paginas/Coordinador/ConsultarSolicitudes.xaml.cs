@@ -28,8 +28,6 @@ namespace Gui.Paginas.Coordinador
             if (listaDeSolicitudes.Count == 0)
             {
                 AdministradorVentanasDialogo.MostrarVentanaError("No existen Solicitudes de cambio.");
-
-                NavigationService.GoBack();
             }
             else
             {
@@ -38,11 +36,16 @@ namespace Gui.Paginas.Coordinador
             }
         }
 
-        private void RegresarAInicio(object sender, RoutedEventArgs e)
+        private void ConsultarDetallesDeSolicitud(object sender, RoutedEventArgs e)
         {
             solicitudSeleccionada = (SolicitudCambio)tablaDeSolicitudes.SelectedItem;
 
             NavigationService.Navigate(new DetallarSolicitud(solicitudSeleccionada));
+        }
+
+        private void RegresarAInicio(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new InicioCoordinador());
         }
     }
 }

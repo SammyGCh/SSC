@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DominioNegocio
 {
@@ -9,8 +7,10 @@ namespace DominioNegocio
         private int idSolicitudCambio;
         private String cambiosSolicitados;
         private String fecha;
-        private int status;
-        private int planDeCurso;
+        private  int status;
+        private PlanDeCurso planDeCurso;
+        private String comentarios;
+        private PlanDeCurso planOriginal;
 
         public int IdSolicitudCambio
         {
@@ -36,10 +36,22 @@ namespace DominioNegocio
             set => status = value;
         }
 
-        public int PlanDeCurso
+        public PlanDeCurso PlanDeCurso
         {
             get => planDeCurso;
             set => planDeCurso = value;
+        }
+
+        public String Comentarios
+        {
+            get => comentarios;
+            set => comentarios = value;
+        }
+
+        public PlanDeCurso PlanOriginal
+        {
+            get => planOriginal;
+            set => planOriginal = value;
         }
     }
 }

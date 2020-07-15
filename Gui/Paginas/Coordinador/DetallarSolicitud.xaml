@@ -20,17 +20,17 @@
 
             <StackPanel Grid.Row="1">
 
-                <StackPanel Orientation="Horizontal" Width="480" Height="25" Margin="10,0,60,0">
+                <StackPanel Orientation="Horizontal" Width="480" Height="25" Margin="10,10,60,0">
                     <TextBlock Text="Status: " Margin="0,3,4,-0.2" FontSize="14" TextAlignment="Left" Width="70"/>
                     <TextBlock FontSize="14" TextWrapping="Wrap">
                         <TextBlock.Style>
                             <Style>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Status}" Value="1">
-                                        <Setter Property="TextBlock.Text" Value="Activo"/>
-                                    </DataTrigger>
                                     <DataTrigger Binding="{Binding Status}" Value="0">
-                                        <Setter Property="TextBlock.Text" Value="No Activo"/>
+                                        <Setter Property="TextBlock.Text" Value="Pendiente"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Status}" Value="1">
+                                        <Setter Property="TextBlock.Text" Value="Aprobado"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -40,34 +40,34 @@
 
                 <StackPanel Orientation="Horizontal" Width="480" Margin="10,0,125,0" Height="25">
                     <TextBlock Text="Fecha: " Margin="35,2,3,0" FontSize="14" TextAlignment="Right"/>
-                    <TextBlock Text="{Binding LastName}" Width="217" Margin="0,0,0,-0.2" />
+                    <TextBlock Text="{Binding Fecha}" Width="217" Margin="0,5,0,-0.2" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Width="480" Margin="10,0,125,0" Height="25">
                     <TextBlock Text="Cambios Solicitados: " Margin="-50,2,3,0" FontSize="14" TextAlignment="Right"/>
-                    <TextBlock Text="{Binding LastName}" Width="255" Margin="0,0,0,-0.2" />
+                    <TextBlock Text="{Binding CambiosSolicitados}" Width="255" Margin="0,0,0,-0.2" />
                 </StackPanel>
-                
+
                 <materialDesign:Card Background="AliceBlue" Margin="40,30,549.4,30" Padding="10" 
-                                     BorderThickness="50" Width="401" HorizontalAlignment="Center" Height="262">
+                                     BorderThickness="50" Width="401" HorizontalAlignment="Center" Height="294">
                     <StackPanel Margin="0,0,10,10">
                         <TextBlock Text="Plan de Curso Original: " Margin="2,2,3,4" FontSize="14" TextAlignment="Center"/>
                         <StackPanel Orientation="Horizontal" Height="30" Width="480" Margin="0,15,20,0">
                             <TextBlock Text="Objetivo General: " Margin="2,2,3,4" FontSize="14" TextAlignment="Right"/>
-                            <TextBlock x:Name="academicType" Width="208" Margin="0,0,0,0.4"/>
+                            <TextBlock Text="{Binding PlanOriginal.ObjetivoGeneral}" Width="240" Margin="0,0,0,0.4"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Height="25" Width="480" Margin="10,0,85,0">
                             <TextBlock Text="Periodo: " Margin="45,2,3,4" FontSize="14" TextAlignment="Right"/>
-                            <TextBlock Text="{Binding Names}" Width="215" Margin="0,0,0,-0.2"/>
+                            <TextBlock Text="{Binding PlanOriginal.Periodo}" Width="242" TextWrapping="Wrap" Height ="25" Margin="0,0,0,-0.2"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Width="480" Margin="10,0,125,0" Height="25">
+                        <StackPanel Orientation="Horizontal" Width="300" Margin="10,10,125,0" Height="95">
                             <TextBlock Text="Referencias: " Margin="16,2,3,0" FontSize="14" TextAlignment="Right"/>
-                            <TextBlock Text="{Binding LastName}" Width="217" Margin="0,0,0,-0.2" />
+                            <TextBlock Text="{Binding PlanOriginal.Referencias}" Width="175" TextWrapping="Wrap" Height="95" Margin="0,0,0,-0.2" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="15,0,78.2,0" Height="25">
+                        <StackPanel Orientation="Horizontal" Margin="15,1,78.2,0" Height="25">
                             <TextBlock Text="Temas: " Margin="45,2,3,0" FontSize="14" TextAlignment="Right"/>
                             <Button x:Name="temaButton" Width="152" Margin="5,0,0,-0.2" Cursor="Hand" IsEnabled="True" 
                             Click="IrATemas" Height="Auto">
@@ -91,29 +91,29 @@
                     </StackPanel>
                 </materialDesign:Card>
 
-                <materialDesign:Card Background="AliceBlue" Margin="400,-290,20,30" Padding="10" 
-                                     BorderThickness="50" Width="401" Height="262">
+                <materialDesign:Card Background="AliceBlue" Margin="510,-330,79.4,30" Padding="10" 
+                                     BorderThickness="50" Width="401" Height="282">
                     <StackPanel Margin="0,0,10,10">
                         <TextBlock Text="Cambios a Plan de Curso: " Margin="2,2,3,4" FontSize="14" TextAlignment="Center"/>
                         <StackPanel Orientation="Horizontal" Height="30" Width="480" Margin="0,15,20,0">
                             <TextBlock Text="Objetivo General: " Margin="2,2,3,4" FontSize="14" TextAlignment="Right"/>
-                            <TextBlock x:Name="objetivoGeneral" Width="208" Margin="0,0,0,0.4"/>
+                            <TextBlock Text="{Binding PlanDeCurso.ObjetivoGeneral}" Width="232" Margin="0,0,0,0.4"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Height="25" Width="480" Margin="10,0,85,0">
                             <TextBlock Text="Periodo: " Margin="45,2,3,4" FontSize="14" TextAlignment="Right"/>
-                            <TextBlock Text="{Binding Names}" Width="215" Margin="0,0,0,-0.2"/>
+                            <TextBlock Text="{Binding PlanDeCurso.Periodo}" Width="244" Margin="0,0,0,-0.2"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Width="480" Margin="10,0,125,0" Height="25">
+                        <StackPanel Orientation="Horizontal" Width="480" Margin="10,0,125,0" Height="95">
                             <TextBlock Text="Referencias: " Margin="16,2,3,0" FontSize="14" TextAlignment="Right"/>
-                            <TextBlock Text="{Binding LastName}" Width="217" Margin="0,0,0,-0.2" />
+                            <TextBlock Text="{Binding PlanDeCurso.Referencias}" Width="175" TextWrapping="Wrap" Height="95" Margin="0,0,0,-0.2" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Margin="15,0,78.2,0" Height="25">
+                        <StackPanel Orientation="Horizontal" Margin="15,1,78.2,0" Height="25">
                             <TextBlock Text="Temas: " Margin="45,2,3,0" FontSize="14" TextAlignment="Right"/>
                             <Button x:Name="temaActualButton" Width="152" Margin="5,0,0,-0.2" Cursor="Hand" IsEnabled="True" 
-                            Click="IrATemas" Height="Auto">
+                            Click="IrATemasCambio" Height="Auto">
                                 <StackPanel Orientation="Horizontal" Width="110" HorizontalAlignment="Center">
                                     <materialDesign:PackIcon Kind="Tab" Margin="3,0,1,1" Width="30"/>
                                     <TextBlock Text="Ver Temas"/>
@@ -124,7 +124,7 @@
                         <StackPanel Orientation="Horizontal" Margin="15,10,78.2,0" Height="25">
                             <TextBlock Text="Actividades: " Margin="10,2,3,0" FontSize="14" TextAlignment="Right"/>
                             <Button x:Name="actividadActualButton" Width="151" Margin="10,0,0,-6.4" Cursor="Hand" IsEnabled="True" 
-                            Click="IrAActividades">
+                            Click="IrAActividadesCambio">
                                 <StackPanel Orientation="Horizontal" Width="150" HorizontalAlignment="Center">
                                     <materialDesign:PackIcon Kind="LocalActivity" Margin="5,3.5,1,1" Width="30"/>
                                     <TextBlock Text="Ver Actividades" Width="150"/>
@@ -136,9 +136,9 @@
 
                 <StackPanel Orientation="Horizontal" Width="480" Margin="198,0,312.4,0" Height="25">
                     <TextBlock Text="Comentarios: " Margin="-20,2,3,0" FontSize="14" TextAlignment="Right"/>
-                    <TextBox Name ="comentariosSolicitud" Text="{Binding LastName}" Width="323" Margin="0,0,0,-0.2" />
+                    <TextBox x:Name ="comentariosSolicitud" Text="{Binding Comentarios}" Width="300" MaxWidth="300" Margin="0,0,0,-0.2" />
                 </StackPanel>
-                
+
                 <StackPanel Orientation="Horizontal" Margin="20" Width="750">
                     <Button x:Name="regresarButton" Width="115" Margin="210,0,0,0" Cursor="Hand" IsEnabled="True" 
                             Click="RegresarAConsultar">
@@ -150,6 +150,15 @@
 
                     <Button x:Name="aprobarButton" Width="115" Margin="40,0,0,0" Cursor="Hand" IsEnabled="True" 
                             Click="AprobarSolicitud" BorderBrush="Red" Background="Red">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Status}" Value="1">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
                         <StackPanel Orientation="Horizontal" Width="110" HorizontalAlignment="Center">
                             <materialDesign:PackIcon Kind="Approval" Margin="3,3.5,1,1" Width="30"/>
                             <TextBlock Text="Aprobar"/>

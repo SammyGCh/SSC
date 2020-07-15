@@ -15,6 +15,8 @@ namespace AccesoADatos.Implementacion
         private MySqlConnection conexionMysql;
         private MySqlCommand query;
         private MySqlDataReader reader;
+        private const int STATUS_APROBADO = 1;
+        private const int STATUS_PENDIENTE = 0;
 
         public SolicitudCambioDAO()
         {
@@ -99,14 +101,22 @@ namespace AccesoADatos.Implementacion
         {
             List<SolicitudCambio> listaDeSolicitudes = new List<SolicitudCambio>();
             SolicitudCambio solicitudObtenida = new SolicitudCambio();
-            CursoDAO cursoDAO = new CursoDAO();
+            PlanDeCursoDAO planDeCursoDAO = new PlanDeCursoDAO();
 
             try
             {
                 conexionMysql = conexion.AbrirConexion();
                 query = new MySqlCommand("", conexionMysql)
                 {
-                    CommandText = "SELECT * FROM solicitudcambio"
+                    CommandText = "SELECT " +
+                    "solicitudcambio.idsolicitudcambio, " +
+                    "solicitudcambio.cambiosSolicitados, " +
+                    "solicitudcambio.fecha, " +
+                    "solicitudcambio.status, " +
+                    "solicitudcambio.idplandecurso, " +
+                    "solicitudcambio.comentarios, " +
+                    "solicitudcambio.idOriginal " +
+                    "FROM solicitudcambio;"
                 };
 
                 reader = query.ExecuteReader();
@@ -115,12 +125,18 @@ namespace AccesoADatos.Implementacion
                 {
                     solicitudObtenida = new SolicitudCambio
                     {
-                        CambiosSolicitados = reader.GetString(0),
-                        Fecha = reader.GetString(1),
-                        Status = reader.GetInt32(2),
-                        PlanDeCurso = reader.GetInt32(3)
-
+                        IdSolicitudCambio = reader.GetInt32(0),
+                        CambiosSolicitados = reader.GetString(1),
+                        Fecha = reader.GetString(2),
+                        Status = reader.GetInt32(3),
+                        PlanDeCurso = planDeCursoDAO.ObtenerPlanDeCurso(reader.GetInt32(4)),
+                        PlanOriginal = planDeCursoDAO.ObtenerPlanDeCurso(reader.GetInt32(6))
                     };
+
+                    if (!reader.IsDBNull(5))
+                    {
+                        solicitudObtenida.Comentarios = reader.GetString(5);
+                    }
 
                     listaDeSolicitudes.Add(solicitudObtenida);
                 }
@@ -150,19 +166,19 @@ namespace AccesoADatos.Implementacion
                 conexionMysql = conexion.AbrirConexion();
                 query = new MySqlCommand("", conexionMysql)
                 {
-                    CommandText = "UPDATE solicitudcambio  SET cambiosSolicitados=@cambiosSolicitados, status=@status WHERE solicitudcambio.idsolicitudcambio = @idsolicitudcambio "
+                    CommandText = "UPDATE solicitudcambio  SET comentarios=@comentarios, status=@status WHERE solicitudcambio.idsolicitudcambio = @idsolicitudcambio "
                 };
 
-                query.Parameters.Add("@cambiosSolicitados", MySqlDbType.VarChar, 600).Value = solicitudAprobada.CambiosSolicitados;
-                query.Parameters.Add("@status", MySqlDbType.Int32, 2).Value = solicitudAprobada.Status;
+                query.Parameters.Add("@comentarios", MySqlDbType.VarChar, 300).Value = solicitudAprobada.Comentarios;
+                query.Parameters.Add("@status", MySqlDbType.Int32, 2).Value = STATUS_APROBADO;
                 query.Parameters.Add("@idsolicitudcambio", MySqlDbType.Int32, 2).Value = solicitudAprobada.IdSolicitudCambio;
 
                 query.ExecuteNonQuery();
                 aprobado = true;
             }
-            catch (MySqlException)
+            catch (MySqlException ex)
             {
-                throw;
+                
             }
             finally
             {
@@ -171,5 +187,6 @@ namespace AccesoADatos.Implementacion
 
             return aprobado;
         }
+
     }
 }

@@ -46,6 +46,9 @@ namespace Gui.Paginas.Coordinador
                 else
                 {
                     SolicitudCambioDAO solicitudDAO = new SolicitudCambioDAO();
+
+                    solicitud.Comentarios = comentariosSolicitud.Text;
+
                     bool guardado = solicitudDAO.AprobarSolicitud(solicitud);
 
                     if (guardado)
@@ -72,6 +75,26 @@ namespace Gui.Paginas.Coordinador
             }
 
             return esVacio;
+        }
+
+        private void IrATemas(object sender, RoutedEventArgs e)
+        {
+            AdministradorVentanasDialogo.MostrarVentanaError("No esta implementada esta funcionalidad");
+        }
+
+        private void IrAActividades(object sender, RoutedEventArgs e)
+        {
+            AdministradorVentanasDialogo.MostrarVentanaError("No esta implementada esta funcionalidad");
+        }
+
+        private void IrATemasCambio(object sender, RoutedEventArgs e)
+        {
+            AdministradorVentanasDialogo.MostrarVentanaError("No esta implementada esta funcionalidad");
+        }
+
+        private void IrAActividadesCambio(object sender, RoutedEventArgs e)
+        {
+            AdministradorVentanasDialogo.MostrarVentanaError("No esta implementada esta funcionalidad");
         }
     }
 }

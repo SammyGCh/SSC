@@ -16,6 +16,7 @@ using LogicaDominio;
 using DominioNegocio;
 using Gui.Paginas.Secretaria;
 using Gui.Paginas.Profesor;
+using Gui.Paginas.Coordinador;
 
 namespace Gui.Ventanas
 {
@@ -66,11 +67,11 @@ namespace Gui.Ventanas
                     AdministradorVentanasDialogo.MostrarVentanaError(mensaje);
                 }
             }
-            catch (MySqlException)
+            catch (MySqlException ex)
             {
                 mensaje = "Ocurrió un error en la conexión. Intente más tarde.";
 
-                AdministradorVentanasDialogo.MostrarVentanaError(mensaje);
+                AdministradorVentanasDialogo.MostrarVentanaError(ex.Message);
             }
             catch (NullReferenceException ex)
             {
@@ -95,6 +96,7 @@ namespace Gui.Ventanas
                         ventanaInicioDeUsuario = new InicioSecretaria();
                         break;
                     case AdministradorLogin.TIPO_COORDINADOR:
+                        ventanaInicioDeUsuario = new InicioCoordinador();
                         break;
                     case AdministradorLogin.TIPO_DIRECTOR:
                         break;

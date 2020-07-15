@@ -80,7 +80,7 @@
                             </DataGridTemplateColumn.HeaderStyle>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding PlanDeCurso}" TextWrapping="WrapWithOverflow"/>
+                                    <TextBlock Text="{Binding PlanDeCurso.Nombre}" TextWrapping="WrapWithOverflow"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -97,7 +97,7 @@
                             </DataGridTemplateColumn.HeaderStyle>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding PlanDeCurso}" TextWrapping="WrapWithOverflow"/>
+                                    <TextBlock Text="{Binding PlanDeCurso.Curso.ImpartidoPor}" TextWrapping="WrapWithOverflow"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -107,30 +107,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Content="Detalles" Name="details" Width ="100" MinWidth="100"
-                                            HorizontalAlignment="Left" Click="DisplayAcademicData"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-
-                            <DataGridTemplateColumn.HeaderStyle>
-                                <Style TargetType="{x:Type DataGridColumnHeader}">
-                                    <Setter Property="Background" Value="#FF5BA1DA"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                    <Setter Property="FontSize" Value="24"/>
-                                </Style>
-                            </DataGridTemplateColumn.HeaderStyle>
-                        </DataGridTemplateColumn  >
-
-                        <DataGridTemplateColumn  Header="77" Width ="142" MinWidth="100" 
-                                                 CanUserResize="False" IsReadOnly="True" CanUserReorder="False">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <DataTemplate.Triggers>
-                                        <DataTrigger Binding="{Binding Status}" Value="0">
-                                            <Setter Property="Visibility" Value="Hidden"/>
-                                        </DataTrigger>
-                                    </DataTemplate.Triggers>
-                                    <Button Name="update" Width ="100"
-                                            HorizontalAlignment="Left" Click="UpdateAcademicData" Content="Actualizar"/>
+                                            HorizontalAlignment="Left" Click="ConsultarDetallesDeSolicitud"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
 
@@ -147,10 +124,10 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="20" Width="750">
-                <Button x:Name="returnButton" Width="115" Margin="250,0,0,0" Cursor="Hand" IsEnabled="True" 
+                <Button x:Name="regresarButton" Width="115" Margin="250,0,0,0" Cursor="Hand" IsEnabled="True" 
                             Click="RegresarAInicio">
                     <StackPanel Orientation="Horizontal" Width="110" HorizontalAlignment="Center">
-                        <materialDesign:PackIcon Kind="Create" Margin="3,3.5,1,1" Width="30"/>
+                        <materialDesign:PackIcon Kind="ArrowBack" Margin="3,3.5,1,1" Width="30"/>
                         <TextBlock Text="Regresar"/>
                     </StackPanel>
                 </Button>
