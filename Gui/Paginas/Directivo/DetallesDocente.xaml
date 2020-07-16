@@ -1,0 +1,48 @@
+﻿<Page x:Class="Gui.Paginas.Directivo.DetallesDocente"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Gui.Paginas.Directivo"
+       mc:Ignorable="d" 
+      Width="1000" Height="1300"
+      Title="DetallesDocente">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+        <StackPanel Background="White" Height="798">
+            <TextBlock HorizontalAlignment="Left" Margin="00,-230,0,0" TextWrapping="Wrap" Name="docenteName" Text="Detalles Docente"
+            VerticalAlignment="Top" FontSize="60" FontWeight="Bold" RenderTransformOrigin="0.508,0.142" Height="100" Width="514"/>
+
+            <Grid>
+
+            </Grid>
+
+            <TextBox Height="100" TextWrapping="Wrap" Text="{Binding Nombres}" Width="120" Margin="0,-190,800,0" FontSize="50" BorderBrush="{x:Null}" IsReadOnly="True" />
+            <TextBox Height="100" TextWrapping="Wrap" Text="{Binding Apellidos}" Width="420" Margin="0,-200,00,0" FontSize="50" BorderBrush="{x:Null}" IsReadOnly="True"/>
+            <TextBox Height="50" TextWrapping="Wrap" Text="Numero Personal:" Width="200" Margin="0,-100,720,0" FontSize="25" BorderBrush="{x:Null}" IsReadOnly="True"/>
+            <TextBox Height="50" TextWrapping="Wrap" Text="{Binding NumeroPersonal}" Width="100" Margin="0,-100,400,0" FontSize="25" BorderBrush="{x:Null}" IsReadOnly="True"/>
+            <TextBox Height="50" TextWrapping="Wrap" Text="RFC:" Width="200" Margin="0,-40,720,0" FontSize="25" BorderBrush="{x:Null}" IsReadOnly="True"/>
+            <TextBox Height="50" TextWrapping="Wrap" Text="{Binding Rfc}" Width="150" Margin="0,-50,650,0" FontSize="25" BorderBrush="{x:Null}" IsReadOnly="True"/>
+            <TextBox Height="50" TextWrapping="Wrap" Text="CURP:" Width="200" Margin="0,-10,720,0" FontSize="25" BorderBrush="{x:Null}" IsReadOnly="True"/>
+            <TextBox Height="50" TextWrapping="Wrap" Text="{Binding Curp}" Width="200" Margin="0,-50,570,0" FontSize="25" BorderBrush="{x:Null}" IsReadOnly="True"/>
+            <TextBox Height="50" TextWrapping="Wrap" Text="Fecha Nacimiento:" Width="300" Margin="0,-10,620,0" FontSize="25" BorderBrush="{x:Null}" IsReadOnly="True"/>
+            <TextBox Height="50" TextWrapping="Wrap" Text="{Binding FechaNacimiento}" Width="100" Margin="0,-50,400,0" FontSize="25" BorderBrush="{x:Null}" IsReadOnly="True"/>
+            <TextBox Height="50" TextWrapping="Wrap" Text="Genero:" Width="200" Margin="0,-10,720,0" FontSize="25" BorderBrush="{x:Null}" IsReadOnly="True"/>
+            <TextBox Height="50" TextWrapping="Wrap" Text="{Binding Genero}" Width="150" Margin="0,-50,580,0" FontSize="25" BorderBrush="{x:Null}" IsReadOnly="True"/>
+            <TextBox Height="50" TextWrapping="Wrap" Text="Correo:" Width="200" Margin="0,-10,720,0" FontSize="25" BorderBrush="{x:Null}" IsReadOnly="True"/>
+            <TextBox Height="50" TextWrapping="Wrap" Text="{Binding CorreoElectronico}" Width="250" Margin="0,-50,480,0" FontSize="25" BorderBrush="{x:Null}" IsReadOnly="True"/>
+            <TextBox Height="50" TextWrapping="Wrap" Text="Perfil Profesional:" Width="200" Margin="0,-10,600,0" FontSize="25" BorderBrush="{x:Null}" IsReadOnly="True"/>
+            <TextBox Height="50" TextWrapping="Wrap" Text="{Binding PerfilProfesional}" Width="900" Margin="0,-10,20,0" FontSize="25" BorderBrush="{x:Null}" IsReadOnly="True"/>
+
+            <DataGrid Height="300" Width="400" Margin="500,-350,0,0" x:Name="tablasCurso" ItemsSource="{Binding Path=planesCurso}" HorizontalScrollBarVisibility="Disabled" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn   Width ="1000" MinWidth="1000" MaxWidth="200" Binding="{Binding Nombre}" CanUserResize="False" CanUserSort="False" IsReadOnly="True" CanUserReorder="False"/>
+                    <DataGridTextColumn   Width ="1000" MinWidth="1000" MaxWidth="200" Binding="{Binding Nrc}" CanUserResize="False" CanUserSort="False" IsReadOnly="True" CanUserReorder="False" />
+                </DataGrid.Columns>
+            </DataGrid>
+            
+            <TextBox Height="50" TextWrapping="Wrap" Text="Cursos del docente:" Width="300" Margin="0,-600,-580,0" FontSize="25" BorderBrush="{x:Null}" IsReadOnly="True"/>
+        <Button x:Name="backButton" Content="Regresar" HorizontalAlignment="Left" Margin="500,50,0,0" VerticalAlignment="Top" Width="126" Height="36" Click="BackButtonClick" Grid.Column="1" Grid.Row="2"/>
+        </StackPanel>
+        
+    </ScrollViewer>
+</Page>

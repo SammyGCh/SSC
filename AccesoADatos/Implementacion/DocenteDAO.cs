@@ -158,5 +158,51 @@ namespace AccesoADatos.Implementacion
 
             return docente;
         }
+
+        public Docente ObtenerDocenteId(int idDocente)
+        {
+            try
+            {
+                conexionMysql = conexion.AbrirConexion();
+                query = new MySqlCommand("", conexionMysql)
+                {
+                    CommandText = "SELECT * from docente WHERE idUsuario = @idDocente"
+                };
+
+                query.Parameters.Add("@idDocente", MySqlDbType.Int32, 2).Value = idDocente;
+
+                reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    docente = new Docente()
+                    {
+                        IdUsuario = reader.GetInt32(0),
+                        Nombres = reader.GetString(1),
+                        Apellidos = reader.GetString(2),
+                        Genero = reader.GetString(3),
+                        CorreoElectronico = reader.GetString(4),
+                        PerfilProfesional = reader.GetString(5),
+                        Rfc = reader.GetString(6),
+                        IdDocente = reader.GetInt32(7)
+                    };
+                }
+            }
+            catch (MySqlException)
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+                conexion.CerrarConexion();
+            }
+
+            return docente;
+        }
     }
 }
