@@ -1,5 +1,7 @@
 ﻿using AccesoADatos.Implementacion;
 using DominioNegocio;
+using Gui.Ventanas;
+using LogicaDominio;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,17 +34,29 @@ namespace Gui.Paginas.Profesor
 
         private void EnviarSolicitud(object sender, RoutedEventArgs e)
         {
-            SolicitudCambio solicitud = GenerarNuevaSolicitud();
-            SolicitudCambioDAO solicitudDAO = new SolicitudCambioDAO();
+            MessageBoxResult esConfirmado = MessageBox.Show("¿Seguro deseas enviar una solicitud?", "Confirmacion", MessageBoxButton.YesNo, MessageBoxImage.Information);
 
-            if (solicitudDAO.RegistrarSolicitud(solicitud))
+            if (esConfirmado == MessageBoxResult.Yes)
             {
-                MessageBox.Show("Solicitud enviada exitosamente", "Exito", MessageBoxButton.OK,MessageBoxImage.Information);
-                NavigationService.GoBack();
-            }
-            else
-            {
-                MessageBox.Show("Ocurrio un error al enviar la solicitud", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (EsTextoCorrecto())
+                {
+                    SolicitudCambio solicitud = GenerarNuevaSolicitud();
+                    SolicitudCambioDAO solicitudDAO = new SolicitudCambioDAO();
+
+                    if (solicitudDAO.RegistrarSolicitud(solicitud))
+                    {
+                        MessageBox.Show("Solicitud enviada exitosamente", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        NavigationService.GoBack();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrio un error al enviar la solicitud", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    AdministradorVentanasDialogo.MostrarVentanaError("Uno o varios campos contienen datos no válidos. Por favor ingresa los datos necesarios");
+                }
             }
         }
 
@@ -57,6 +71,25 @@ namespace Gui.Paginas.Profesor
             };
 
             return nuevaSolicitud;
+        }
+
+        private bool EsTextoCorrecto()
+        {
+            bool esCorrecto;
+
+            esCorrecto = (!TextoVacio() && TextoValido());
+
+            return esCorrecto;
+        }
+
+        private bool TextoValido()
+        {
+            return ValidadorTexto.EsTextoCorrecto(cambiosSolicitados.Text);
+        }
+
+        private bool TextoVacio()
+        {
+            return String.IsNullOrEmpty(cambiosSolicitados.Text);
         }
     }
 }
