@@ -136,7 +136,7 @@
 
                 <StackPanel Orientation="Horizontal" Width="480" Margin="198,0,312.4,0" Height="25">
                     <TextBlock Text="Comentarios: " Margin="-20,2,3,0" FontSize="14" TextAlignment="Right"/>
-                    <TextBox x:Name ="comentariosSolicitud" Text="{Binding Comentarios}" Width="300" MaxWidth="300" Margin="0,0,0,-0.2" />
+                    <TextBox x:Name ="comentariosSolicitud" Text="{Binding Comentarios}" Width="300" MaxWidth="299" Margin="0,0,0,-0.2" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="20" Width="750">

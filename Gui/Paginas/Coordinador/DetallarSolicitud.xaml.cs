@@ -35,13 +35,13 @@ namespace Gui.Paginas.Coordinador
 
         private void AprobarSolicitud(object sender, RoutedEventArgs e)
         {
-            bool confirmar = AdministradorVentanasDialogo.MostrarVentanaConfirmacion("Seguro que deseas aprobar esta solicitud?");
+            bool confirmar = AdministradorVentanasDialogo.MostrarVentanaConfirmacion("“¿Seguro que deseas autorizar la solicitud de modificación para este plan de curso?");
 
             if (confirmar)
             {
                 if (ComentarioVacio())
                 {
-                    AdministradorVentanasDialogo.MostrarVentanaCamposVacios();
+                    AdministradorVentanasDialogo.MostrarVentanaError("Esta vacio el campo de comentarios. Por favor verifique la información.");
                 }
                 else
                 {
@@ -53,11 +53,11 @@ namespace Gui.Paginas.Coordinador
 
                     if (guardado)
                     {
-                        AdministradorVentanasDialogo.MostrarVentanaExito("Aprobación guardada exitosamente");
+                        AdministradorVentanasDialogo.MostrarVentanaExito("El plan de curso fue actualizado exitosamente.");
                     }
                     else
                     {
-                        AdministradorVentanasDialogo.MostrarVentanaError("Ocurrio un fallo al guardar la aprobación. Intente de nuevo mas tarde.");
+                        AdministradorVentanasDialogo.MostrarVentanaError("Ocurrió un fallo al intentar conectarse a la base de datos. Intente de nuevo más tarde.");
                     }
 
                     NavigationService.Navigate(new ConsultarSolicitudes());
