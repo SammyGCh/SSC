@@ -129,13 +129,18 @@ namespace AccesoADatos.Implementacion
                         CambiosSolicitados = reader.GetString(1),
                         Fecha = reader.GetString(2),
                         Status = reader.GetInt32(3),
-                        PlanDeCurso = planDeCursoDAO.ObtenerPlanDeCurso(reader.GetInt32(4)),
-                        PlanOriginal = planDeCursoDAO.ObtenerPlanDeCurso(reader.GetInt32(6))
+                        PlanDeCurso = planDeCursoDAO.ObtenerPlanDeCurso(reader.GetInt32(4))
+                        
                     };
 
                     if (!reader.IsDBNull(5))
                     {
                         solicitudObtenida.Comentarios = reader.GetString(5);
+                    }
+
+                    if (!reader.IsDBNull(6))
+                    {
+                        solicitudObtenida.PlanOriginal = planDeCursoDAO.ObtenerPlanDeCurso(reader.GetInt32(6));
                     }
 
                     listaDeSolicitudes.Add(solicitudObtenida);
