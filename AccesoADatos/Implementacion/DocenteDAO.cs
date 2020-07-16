@@ -111,5 +111,38 @@ namespace AccesoADatos.Implementacion
 
             return docentes;
         }
+
+        public int ExisteDocente(Docente docente)
+        {
+            int existe = 0;
+
+            try
+            {
+                conexionMysql = conexion.AbrirConexion();
+                query = new MySqlCommand("", conexionMysql)
+                {
+                    CommandText = "SELECT COUNT(docente.numeroPersonal) FROM docente WHERE docente.numeroPersonal = @numeroPersonal"
+                };
+
+                query.Parameters.Add("@numeroPersonal", MySqlDbType.VarChar, 10).Value = docente.NumeroPersonal;
+
+                reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    existe = reader.GetInt32(0);
+                }
+            }
+            catch (MySqlException)
+            {
+                throw;
+            }
+            finally
+            {
+                conexion.CerrarConexion();
+            }
+
+            return existe;
+        }
     }
 }

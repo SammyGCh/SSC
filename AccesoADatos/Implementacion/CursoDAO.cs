@@ -13,10 +13,52 @@ namespace AccesoADatos.Implementacion
         private readonly ConexionBD conexion;
         private MySqlConnection conexionMysql;
         private MySqlCommand query;
+        private MySqlDataReader reader;
 
         public CursoDAO()
         {
             conexion = new ConexionBD();
+        }
+
+        public int ExisteCurso(Curso curso)
+        {
+            int existe = 0;
+
+            try
+            {
+                conexionMysql = conexion.AbrirConexion();
+                query = new MySqlCommand("", conexionMysql)
+                {
+                    CommandText = "SELECT COUNT(curso.nrc), curso.turno, curso.seccion FROM curso WHERE curso.nrc = @nrc AND " +
+                    "curso.turno = @turno AND curso.seccion = @seccion"
+                };
+
+                query.Parameters.Add("@nrc", MySqlDbType.VarChar, 10).Value = curso.Nrc;
+                query.Parameters.Add("@turno", MySqlDbType.VarChar, 10).Value = curso.Turno;
+                query.Parameters.Add("@seccion", MySqlDbType.VarChar, 45).Value = curso.Seccion;
+
+                reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    existe = reader.GetInt32(0);
+                }
+            }
+            catch (MySqlException)
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+                conexion.CerrarConexion();
+            }
+
+            return existe;
         }
 
         public bool GuardarCurso(Curso curso)

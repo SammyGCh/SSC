@@ -9,43 +9,60 @@ namespace LogicaDominio
 {
     public class AdministradorDocente
     {
-        public bool RegistrarNuevaCuentaDocente(Cuenta cuentaDocente, Docente nuevoDocente)
+        private const int NO_EXISTE = 0;
+
+        public ResultadoRegistro RegistrarNuevaCuentaDocente(Cuenta cuentaDocente, Docente nuevoDocente)
         {
-            bool registrado = false;
+            ResultadoRegistro registrado = ResultadoRegistro.NoRegistrado;
 
             if (nuevoDocente != null)
             {
-                UsuarioDAO administradorUsuario = new UsuarioDAO();
-                bool usuarioGuardado;
+                DocenteDAO administradorDocente = new DocenteDAO();
 
-                try
+                if (administradorDocente.ExisteDocente(nuevoDocente) == NO_EXISTE)
                 {
-                    usuarioGuardado = administradorUsuario.GuardarUsuario(nuevoDocente);
-                }
-                catch (MySqlException)
-                {
-                    throw;
-                }
-
-                if (usuarioGuardado)
-                {
-                    CuentaDAO administradorCuenta = new CuentaDAO();
+                    UsuarioDAO administradorUsuario = new UsuarioDAO();
+                    bool usuarioGuardado;
 
                     try
                     {
-                        cuentaDocente.Pertenece = administradorUsuario.ObtenerUltimoUsuarioRegistrado();
-
-                        administradorCuenta.GuardarCuenta(cuentaDocente);
-
-                        nuevoDocente.IdUsuario = cuentaDocente.Pertenece.IdUsuario;
-
-                        DocenteDAO administradorDocente = new DocenteDAO();
-                        registrado = administradorDocente.GuardarDocente(nuevoDocente);
+                        usuarioGuardado = administradorUsuario.GuardarUsuario(nuevoDocente);
                     }
                     catch (MySqlException)
                     {
                         throw;
                     }
+
+                    if (usuarioGuardado)
+                    {
+                        CuentaDAO administradorCuenta = new CuentaDAO();
+                        bool docenteRegistrado;
+
+                        try
+                        {
+                            cuentaDocente.Pertenece = administradorUsuario.ObtenerUltimoUsuarioRegistrado();
+
+                            administradorCuenta.GuardarCuenta(cuentaDocente);
+
+                            nuevoDocente.IdUsuario = cuentaDocente.Pertenece.IdUsuario;
+
+
+                            docenteRegistrado = administradorDocente.GuardarDocente(nuevoDocente);
+                        }
+                        catch (MySqlException)
+                        {
+                            throw;
+                        }
+
+                        if (docenteRegistrado)
+                        {
+                            registrado = ResultadoRegistro.Registrado;
+                        }
+                    }
+                }
+                else
+                {
+                    registrado = ResultadoRegistro.YaExiste;
                 }
             }
 

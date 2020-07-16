@@ -32,7 +32,9 @@
                         </TextBlock>
                         <TextBox x:Name="nombre" Width="300" Margin="40,20,0,0" Height="30" 
                                  SelectionBrush="White"
-                                 MaxLength="70"/>
+                                 MaxLength="70"
+                                 TextChanged="ValidarTexto"
+                                 ToolTip="El nombre debe tener al menos 10 caracteres. Solo se aceptan letras."/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
@@ -42,7 +44,9 @@
                         <TextBox x:Name="descripcion" Width="400" Margin="10,20,0,0" Height="100" 
                                  SelectionBrush="White"
                                  TextWrapping="Wrap"
-                                 MaxLength="500"/>
+                                 MaxLength="500"
+                                 TextChanged="ValidarTexto"
+                                 ToolTip="La descripción debe tener al menos 10 caracteres. Solo se aceptan letras."/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
@@ -51,14 +55,18 @@
                         </TextBlock>
                         <TextBox x:Name="nrc" Width="100" Margin="65,20,0,0" Height="30" 
                                  SelectionBrush="White"
-                                 MaxLength="5"/>
+                                 MaxLength="5"
+                                 materialDesign:HintAssist.Hint="00000"
+                                 ToolTip="El NRC debe contener solo 5 números. Por ejemplo, 45345."/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontSize="18" Foreground="White" Margin="70,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
                             Turno (*):
                         </TextBlock>
-                        <ComboBox Name="turno" Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50,10,0,0">
+                        <ComboBox Name="turno" Width="200" Height="30" HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center" Margin="50,10,0,0"
+                                  materialDesign:HintAssist.Hint="Seleccionar turno">
                             <ComboBoxItem>Vespertino</ComboBoxItem>
                             <ComboBoxItem>Matutino</ComboBoxItem>
                         </ComboBox>
@@ -70,14 +78,17 @@
                         </TextBlock>
                         <TextBox x:Name="seccion" Width="200" Margin="35,20,0,0" Height="30" 
                                  SelectionBrush="White"
-                                 MaxLength="70" materialDesign:HintAssist.Hint="0"/>
+                                 MaxLength="70" materialDesign:HintAssist.Hint="0"
+                                 TextChanged="ValidarNumero"
+                                 ToolTip="Ingresa solo números. Por ejemplo, 3."/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
                         <TextBlock FontSize="18" Foreground="White" Margin="70,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
                             Docente (*):
                         </TextBlock>
-                        <ComboBox Name="listaDocentes" Width="300" Margin="30,20,0,0">
+                        <ComboBox Name="listaDocentes" Width="300" Margin="30,20,0,0" 
+                                  materialDesign:HintAssist.Hint="Seleccionar docente">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">

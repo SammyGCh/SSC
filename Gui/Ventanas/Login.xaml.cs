@@ -65,11 +65,11 @@ namespace Gui.Ventanas
                     AdministradorVentanasDialogo.MostrarVentanaError(mensaje);
                 }
             }
-            catch (MySqlException)
+            catch (MySqlException ex)
             {
                 mensaje = "Ocurrió un error en la conexión. Intente más tarde.";
 
-                AdministradorVentanasDialogo.MostrarVentanaError(mensaje);
+                AdministradorVentanasDialogo.MostrarVentanaError(ex.Message);
             }
             catch (NullReferenceException ex)
             {

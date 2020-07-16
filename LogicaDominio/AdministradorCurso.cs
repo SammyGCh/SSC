@@ -10,25 +10,39 @@ namespace LogicaDominio
     public class AdministradorCurso
     {
         private CursoDAO administradorCurso;
+        private const int NO_EXISTE = 0;
 
         public AdministradorCurso()
         {
             administradorCurso = new CursoDAO();
         }
 
-        public bool RegistrarNuevoCurso(Curso curso)
+        public ResultadoRegistro RegistrarNuevoCurso(Curso curso)
         {
-            bool registrado = false;
+            ResultadoRegistro registrado = ResultadoRegistro.NoRegistrado;
 
             if (curso != null)
             {
-                try
+                if (administradorCurso.ExisteCurso(curso) == NO_EXISTE)
                 {
-                    registrado = administradorCurso.GuardarCurso(curso);
+                    bool cursoRegistrado;
+                    try
+                    {
+                        cursoRegistrado = administradorCurso.GuardarCurso(curso);
+                    }
+                    catch (MySqlException)
+                    {
+                        throw;
+                    }
+
+                    if (cursoRegistrado)
+                    {
+                        registrado = ResultadoRegistro.Registrado;
+                    }
                 }
-                catch (MySqlException)
+                else
                 {
-                    throw;
+                    registrado = ResultadoRegistro.YaExiste;
                 }
             }
 
