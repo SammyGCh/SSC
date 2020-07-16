@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using Gui.Ventanas;
+using Gui.Paginas.Directivo;
 
 namespace Gui.Paginas.Coordinador
 {
@@ -32,7 +33,7 @@ namespace Gui.Paginas.Coordinador
 
         private void ConsultarDocentes(object sender, RoutedEventArgs e)
         {
-            AdministradorVentanasDialogo.MostrarVentanaError("No se ha implementado esta funcionalidad");
+            NavigationService.Navigate(new ConsultaDocentes());
         }
     }
 }
