@@ -146,6 +146,7 @@ namespace AccesoADatos.Implementacion
                 query = new MySqlCommand("", conexionMysql)
                 {
                     CommandText = "SELECT " +
+                    "plandecurso.idplandecurso, " +
                     "plandecurso.objetivoGeneral, " +
                     "plandecurso.periodo, " +
                     "plandecurso.referencias, " +
@@ -167,11 +168,12 @@ namespace AccesoADatos.Implementacion
                 {
                     planObtenido = new PlanDeCurso
                     {
-                        ObjetivoGeneral = reader.GetString(0),
-                        Periodo = reader.GetString(1),
-                        Referencias = reader.GetString(2),
-                        Curso = cursoDAO.GetCursoPorID(reader.GetInt32(3)),
-                        Nombre = reader.GetString(4)
+                        IdPlanDeCurso = reader.GetInt32(0),
+                        ObjetivoGeneral = reader.GetString(1),
+                        Periodo = reader.GetString(2),
+                        Referencias = reader.GetString(3),
+                        Curso = cursoDAO.GetCursoPorID(reader.GetInt32(4)),
+                        Nombre = reader.GetString(5)
                     };
                 }
             }

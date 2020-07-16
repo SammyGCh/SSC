@@ -45,7 +45,7 @@
     </Reference>
     <Reference Include="MySql.Data, Version=8.0.19.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector Net 8.0.19\Assemblies\v4.5.2\MySql.Data.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 8.0.19\Assemblies\v4.5.2\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -110,10 +110,10 @@
     <Compile Include="Paginas\Directivo\ConsultaDocentes.xaml.cs">
       <DependentUpon>ConsultaDocentes.xaml</DependentUpon>
     </Compile>
-<Compile Include="Paginas\Directivo\DetallesDocente.xaml.cs">
+    <Compile Include="Paginas\Directivo\DetallesDocente.xaml.cs">
       <DependentUpon>DetallesDocente.xaml</DependentUpon>
     </Compile>
-<Compile Include="Paginas\Directivo\InicioDirectivo.xaml.cs">
+    <Compile Include="Paginas\Directivo\InicioDirectivo.xaml.cs">
       <DependentUpon>InicioDirectivo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Login.xaml.cs">
@@ -191,11 +191,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-<Page Include="Paginas\Directivo\DetallesDocente.xaml">
+    <Page Include="Paginas\Directivo\DetallesDocente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-<Page Include="Paginas\Directivo\InicioDirectivo.xaml">
+    <Page Include="Paginas\Directivo\InicioDirectivo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
