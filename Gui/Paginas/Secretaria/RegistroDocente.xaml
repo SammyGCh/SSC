@@ -55,7 +55,9 @@
                         </TextBlock>
                         <TextBox x:Name="nombres" Width="300" Margin="40,20,0,0" Height="30" 
                                  SelectionBrush="White"
-                                 MaxLength="70"/>
+                                 MaxLength="70"
+                                 TextChanged="ValidarNombre"
+                                 ToolTip="El nombre al menos debe tener 2 caracteres."/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
@@ -64,14 +66,18 @@
                         </TextBlock>
                         <TextBox x:Name="apellidos" Width="300" Margin="40,20,0,0" Height="30" 
                                  SelectionBrush="White"
-                                 MaxLength="80"/>
+                                 MaxLength="80"
+                                 TextChanged="ValidarNombre"
+                                 ToolTip="El nombre al menos debe tener 2 caracteres."/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontSize="18" Foreground="White" Margin="70,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Right">
                             Género (*):
                         </TextBlock>
-                        <ComboBox Name="genero" Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50,10,0,0">
+                        <ComboBox Name="genero" Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                  Margin="50,10,0,0"
+                                  materialDesign:HintAssist.Hint="Seleccionar género">
                             <ComboBoxItem>Femenino</ComboBoxItem>
                             <ComboBoxItem>Masculino</ComboBoxItem>
                         </ComboBox>
@@ -84,7 +90,9 @@
                         </TextBlock>
                         <TextBox x:Name="correo" Width="300" Margin="20,20,0,0" Height="30" 
                                  SelectionBrush="White"
-                                 MaxLength="70" materialDesign:HintAssist.Hint="correo@ejemplo.com"/>
+                                 MaxLength="70" materialDesign:HintAssist.Hint="correo@ejemplo.com"
+                                 TextChanged="ValidarCorreo"
+                                 ToolTip="El correo generalmente se conforma por usuario@dominio. Ejemplos de dominio: gmail.com, hotmail.com, yahoo.com"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
@@ -94,7 +102,10 @@
                         </TextBlock>
                         <TextBox x:Name="numeroPersonal" Width="200" Margin="40,20,0,0" Height="30" 
                                  SelectionBrush="White"
-                                 MaxLength="9"/>
+                                 MaxLength="9"
+                                 materialDesign:HintAssist.Hint="S00000000"
+                                 TextChanged="ValidarNumeroPersonal"
+                                 ToolTip="El número de personal debe iniciar con la letra S mayúscula seguido de 8 números. Por ejemplo, S12015147."/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
@@ -102,7 +113,7 @@
                             Fecha de <LineBreak/>
                             nacimiento (*):
                         </TextBlock>
-                        <DatePicker Name="fechaNacimiento" Width="200" Margin="20,30,0,0"></DatePicker>
+                        <DatePicker Name="fechaNacimiento" Width="200" Margin="20,30,0,0" materialDesign:HintAssist.Hint="Seleccionar fecha"></DatePicker>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
@@ -111,7 +122,9 @@
                         </TextBlock>
                         <TextBox x:Name="curp" Width="200" Margin="60,20,0,0" Height="30" 
                                  SelectionBrush="White"
-                                 MaxLength="18"/>
+                                 MaxLength="18"
+                                 TextChanged="EsCURP"
+                                 ToolTip="La CURP está compuesta de 18 caracteres alfanuméricos."/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
@@ -120,7 +133,9 @@
                         </TextBlock>
                         <TextBox x:Name="rfc" Width="200" Margin="70,20,0,0" Height="30" 
                                  SelectionBrush="White"
-                                 MaxLength="13"/>
+                                 MaxLength="13"
+                                 TextChanged="EsRFC"
+                                 ToolTip="El RFC está compuesta de 13 caracteres alfanuméricos."/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
@@ -131,7 +146,9 @@
                         <TextBox x:Name="perfilProfesional" Width="400" Margin="10,20,0,0" Height="120" 
                                  SelectionBrush="White"
                                  MaxLength="100"
-                                 TextWrapping="Wrap"/>
+                                 TextWrapping="Wrap"
+                                 TextChanged="ValidarTexto"
+                                 ToolTip="Debe contener al menos 10 caracteres."/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
@@ -141,7 +158,9 @@
                         </TextBlock>
                         <TextBox x:Name="aniosExperiencia" Width="100" Margin="20,20,0,0" Height="30" 
                                  SelectionBrush="White"
-                                 MaxLength="2" materialDesign:HintAssist.Hint="0"/>
+                                 MaxLength="2" materialDesign:HintAssist.Hint="0"
+                                 TextChanged="EsNumero"
+                                 ToolTip="Ingrese solo números. Por ejemplo, 10."/>
                     </StackPanel>
                 </StackPanel>
             </materialDesign:Card>

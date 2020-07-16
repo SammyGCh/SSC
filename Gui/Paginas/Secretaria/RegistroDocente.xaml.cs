@@ -55,13 +55,19 @@ namespace Gui.Paginas.Secretaria
             {
                 try
                 {
-                    bool guardado = GuardarDocenteRegistrado();
+                    ResultadoRegistro guardado = GuardarDocenteRegistrado();
                     string mensaje;
 
-                    if (guardado)
+                    if (guardado == ResultadoRegistro.Registrado)
                     {
                         mensaje = "Se registró el docente exitosamente.";
                         AdministradorVentanasDialogo.MostrarVentanaExito(mensaje);
+                        LimpiarCampos();
+                    }
+                    else if (guardado == ResultadoRegistro.YaExiste)
+                    {
+                        mensaje = "El docente que intenta registrar ya existe. Por favor, verifique la información.";
+                        AdministradorVentanasDialogo.MostrarVentanaError(mensaje);
                     }
                     else
                     {
@@ -77,9 +83,8 @@ namespace Gui.Paginas.Secretaria
             }
         }
 
-        private bool GuardarDocenteRegistrado()
+        private ResultadoRegistro GuardarDocenteRegistrado()
         {
-            bool guardado;
             Cuenta cuentaDocente = new Cuenta()
             {
                 Username = usuario.Text,
@@ -101,6 +106,8 @@ namespace Gui.Paginas.Secretaria
             };
 
             AdministradorDocente administradorDocente = new AdministradorDocente();
+
+            ResultadoRegistro guardado;
 
             try
             {
@@ -160,6 +167,104 @@ namespace Gui.Paginas.Secretaria
             fechaNacimiento.SelectedDate = null;
             usuario.Clear();
             password.Clear();
+        }
+
+        private void ValidarNombre(object sender, TextChangedEventArgs e)
+        {
+            string nombreAValidar = ((TextBox)sender).Text;
+
+            if (ValidadorTexto.EsNombreCorrecto(nombreAValidar))
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Blue;
+            }
+            else
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Red;
+            }
+        }
+
+        private void ValidarCorreo(object sender, TextChangedEventArgs e)
+        {
+            string correo = ((TextBox)sender).Text;
+
+            if (ValidadorTexto.EsCorreoElectronico(correo))
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Blue;
+            }
+            else
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Red;
+            }
+        }
+
+        private void ValidarNumeroPersonal(object sender, TextChangedEventArgs e)
+        {
+            string numeroPersonal = ((TextBox)sender).Text;
+
+            if (ValidadorTexto.EsNumeroPersonal(numeroPersonal))
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Blue;
+            }
+            else
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Red;
+            }
+        }
+
+        private void EsCURP(object sender, TextChangedEventArgs e)
+        {
+            string curp = ((TextBox)sender).Text;
+
+            if (ValidadorTexto.EsCURP(curp))
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Blue;
+            }
+            else
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Red;
+            }
+        }
+
+        private void EsRFC(object sender, TextChangedEventArgs e)
+        {
+            string rfc = ((TextBox)sender).Text;
+
+            if (ValidadorTexto.EsRFC(rfc))
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Blue;
+            }
+            else
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Red;
+            }
+        }
+
+        private void ValidarTexto(object sender, TextChangedEventArgs e)
+        {
+            string texto = ((TextBox)sender).Text;
+
+            if (ValidadorTexto.EsTextoCorrecto(texto))
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Blue;
+            }
+            else
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Red;
+            }
+        }
+
+        private void EsNumero(object sender, TextChangedEventArgs e)
+        {
+            string numero = ((TextBox)sender).Text;
+
+            if (ValidadorTexto.EsNumeroValido(numero))
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Blue;
+            }
+            else
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Red;
+            }
         }
     }
 }

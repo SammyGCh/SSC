@@ -62,13 +62,18 @@ namespace Gui.Paginas.Secretaria
                 string mensaje;
                 try
                 {
-                    bool guardado = GuardarCursoRegistrado();
+                    ResultadoRegistro guardado = GuardarCursoRegistrado();
 
-                    if (guardado)
+                    if (guardado == ResultadoRegistro.Registrado)
                     {
                         mensaje = "Se registró el curso exitosamente.";
                         AdministradorVentanasDialogo.MostrarVentanaExito(mensaje);
                         LimpiarCampos();
+                    }
+                    else if (guardado == ResultadoRegistro.YaExiste)
+                    {
+                        mensaje = "El curso que intenta registrar ya existe, por favor verifique la información.";
+                        AdministradorVentanasDialogo.MostrarVentanaError(mensaje);
                     }
                 }
                 catch (MySqlException ex)
@@ -78,7 +83,7 @@ namespace Gui.Paginas.Secretaria
             }
         }
 
-        public bool GuardarCursoRegistrado()
+        public ResultadoRegistro GuardarCursoRegistrado()
         {
             Curso nuevoCurso = new Curso()
             {
@@ -92,7 +97,7 @@ namespace Gui.Paginas.Secretaria
 
             AdministradorCurso administradorCurso = new AdministradorCurso();
 
-            bool guardado;
+            ResultadoRegistro guardado;
             try
             {
                 guardado = administradorCurso.RegistrarNuevoCurso(nuevoCurso);
@@ -140,6 +145,34 @@ namespace Gui.Paginas.Secretaria
             turno.SelectedItem = null;
             seccion.Clear();
             listaDocentes.SelectedItem = null;
+        }
+
+        private void ValidarTexto(object sender, TextChangedEventArgs e)
+        {
+            string textoAValidar = ((TextBox)sender).Text;
+
+            if (ValidadorTexto.EsTextoCorrecto(textoAValidar))
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Blue;
+            }
+            else
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Red;
+            }
+        }
+
+        private void ValidarNumero(object sender, TextChangedEventArgs e)
+        {
+            string numeroAValidar = ((TextBox)sender).Text;
+
+            if (ValidadorTexto.EsNumeroValido(numeroAValidar))
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Blue;
+            }
+            else
+            {
+                ((TextBox)sender).BorderBrush = Brushes.Red;
+            }
         }
     }
 }
