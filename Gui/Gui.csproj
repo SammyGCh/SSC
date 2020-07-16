@@ -67,6 +67,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Paginas\Coordinador\ConsultarPlanes.xaml.cs">
+      <DependentUpon>ConsultarPlanes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Coordinador\ConsultarSolicitudes.xaml.cs">
+      <DependentUpon>ConsultarSolicitudes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Coordinador\DetallarPlanNuevo.xaml.cs">
+      <DependentUpon>DetallarPlanNuevo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Coordinador\DetallarSolicitud.xaml.cs">
+      <DependentUpon>DetallarSolicitud.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Coordinador\InicioCoordinador.xaml.cs">
+      <DependentUpon>InicioCoordinador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Profesor\InicioProfesor.xaml.cs">
+      <DependentUpon>InicioProfesor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Profesor\ListaDeCursos.xaml.cs">
+      <DependentUpon>ListaDeCursos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Profesor\ListaDePlanesDeCurso.xaml.cs">
+      <DependentUpon>ListaDePlanesDeCurso.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Profesor\RegistroDeSolicitud.xaml.cs">
+      <DependentUpon>RegistroDeSolicitud.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Secretaria\InicioSecretaria.xaml.cs">
       <DependentUpon>InicioSecretaria.xaml</DependentUpon>
     </Compile>
@@ -79,6 +106,15 @@
     <Compile Include="Ventanas\AdministradorVentanasDialogo.cs" />
     <Compile Include="Ventanas\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Directivo\ConsultaDocentes.xaml.cs">
+      <DependentUpon>ConsultaDocentes.xaml</DependentUpon>
+    </Compile>
+<Compile Include="Paginas\Directivo\DetallesDocente.xaml.cs">
+      <DependentUpon>DetallesDocente.xaml</DependentUpon>
+    </Compile>
+<Compile Include="Paginas\Directivo\InicioDirectivo.xaml.cs">
+      <DependentUpon>InicioDirectivo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -95,6 +131,42 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Paginas\Coordinador\ConsultarPlanes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Coordinador\ConsultarSolicitudes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Coordinador\DetallarPlanNuevo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Coordinador\DetallarSolicitud.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Coordinador\InicioCoordinador.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Profesor\InicioProfesor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Profesor\ListaDeCursos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Profesor\ListaDePlanesDeCurso.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Profesor\RegistroDeSolicitud.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Paginas\Secretaria\InicioSecretaria.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,6 +184,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Directivo\ConsultaDocentes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+<Page Include="Paginas\Directivo\DetallesDocente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+<Page Include="Paginas\Directivo\InicioDirectivo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

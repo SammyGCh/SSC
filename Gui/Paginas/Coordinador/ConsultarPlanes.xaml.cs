@@ -10,21 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Gui.Paginas.Profesor;
-using Gui.Paginas.Secretaria;
 
-namespace Gui.Ventanas
+namespace Gui.Paginas.Coordinador
 {
     /// <summary>
-    /// Lógica de interacción para Inicio.xaml
+    /// Interaction logic for ConsultarPlanes.xaml
     /// </summary>
-    public partial class Inicio : Window
+    public partial class ConsultarPlanes : Page
     {
-        public Inicio(Page paginaInicio)
+        public ConsultarPlanes()
         {
             InitializeComponent();
-            frameInicio.Content = paginaInicio;
         }
     }
 }

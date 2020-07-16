@@ -10,21 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Gui.Paginas.Profesor;
-using Gui.Paginas.Secretaria;
 
-namespace Gui.Ventanas
+namespace Gui.Paginas.Directivo
 {
     /// <summary>
-    /// Lógica de interacción para Inicio.xaml
+    /// Lógica de interacción para InicioDirectivo.xaml
     /// </summary>
-    public partial class Inicio : Window
+    public partial class InicioDirectivo : Page
     {
-        public Inicio(Page paginaInicio)
+        public InicioDirectivo()
         {
             InitializeComponent();
-            frameInicio.Content = paginaInicio;
+        }
+
+        private void ConsultarDocentes(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ConsultaDocentes());
         }
     }
 }

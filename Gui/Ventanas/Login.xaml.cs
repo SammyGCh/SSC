@@ -15,6 +15,9 @@ using MySql.Data.MySqlClient;
 using LogicaDominio;
 using DominioNegocio;
 using Gui.Paginas.Secretaria;
+using Gui.Paginas.Profesor;
+using Gui.Paginas.Directivo;
+using Gui.Paginas.Coordinador;
 
 namespace Gui.Ventanas
 {
@@ -94,10 +97,13 @@ namespace Gui.Ventanas
                         ventanaInicioDeUsuario = new InicioSecretaria();
                         break;
                     case AdministradorLogin.TIPO_COORDINADOR:
+                        ventanaInicioDeUsuario = new InicioCoordinador();
                         break;
                     case AdministradorLogin.TIPO_DIRECTOR:
+                        ventanaInicioDeUsuario = new InicioDirectivo();
                         break;
                     case AdministradorLogin.TIPO_DOCENTE:
+                        ventanaInicioDeUsuario = new InicioProfesor(1);
                         break;
                 }
 
