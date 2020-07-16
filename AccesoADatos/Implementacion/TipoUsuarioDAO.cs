@@ -28,7 +28,7 @@ namespace AccesoADatos.Implementacion
                 conexionMysql = conexion.AbrirConexion();
                 query = new MySqlCommand("", conexionMysql)
                 {
-                    CommandText = "SELECT * FROM tipousuario WHERE idtipousuario = @idtipousuario"
+                    CommandText = "SELECT * FROM tipousuario WHERE idtipousuairo = @idtipousuario"
                 };
 
                 query.Parameters.Add("@idtipousuario", MySqlDbType.Int32, 2).Value = idTipoUsuario;

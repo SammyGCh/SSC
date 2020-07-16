@@ -74,6 +74,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
 
+
                             <DataGridTemplateColumn.HeaderStyle>
                                 <Style TargetType="{x:Type DataGridColumnHeader}">
                                     <Setter Property="Background" Value="#FF5BA1DA"/>
@@ -82,8 +83,6 @@
                                 </Style>
                             </DataGridTemplateColumn.HeaderStyle>
                         </DataGridTemplateColumn>
-
-
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
