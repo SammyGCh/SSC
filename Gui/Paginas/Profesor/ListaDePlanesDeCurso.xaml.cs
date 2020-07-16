@@ -29,6 +29,7 @@ namespace Gui.Paginas.Profesor
         private void SolicitarActualizacion(object sender, RoutedEventArgs e)
         {
             PlanDeCurso cursoSeleccionado = (PlanDeCurso)tablaDePlanes.SelectedItem;
+
             SolicitudCambioDAO solicitudes = new SolicitudCambioDAO();
 
             if (!solicitudes.ExisteSolicitudPendiente(cursoSeleccionado.IdPlanDeCurso))
