@@ -16,7 +16,7 @@ using LogicaDominio;
 using DominioNegocio;
 using Gui.Paginas.Secretaria;
 using Gui.Paginas.Profesor;
-using Gui.Paginas.Coordinador;
+using Gui.Paginas.Directivo;
 
 namespace Gui.Ventanas
 {
@@ -96,9 +96,10 @@ namespace Gui.Ventanas
                         ventanaInicioDeUsuario = new InicioSecretaria();
                         break;
                     case AdministradorLogin.TIPO_COORDINADOR:
-                        ventanaInicioDeUsuario = new InicioCoordinador();
+                        //ventanaInicioDeUsuario = new InicioCoordinador();//
                         break;
                     case AdministradorLogin.TIPO_DIRECTOR:
+                        ventanaInicioDeUsuario = new InicioDirectivo();
                         break;
                     case AdministradorLogin.TIPO_DOCENTE:
                         ventanaInicioDeUsuario = new InicioProfesor(1);
