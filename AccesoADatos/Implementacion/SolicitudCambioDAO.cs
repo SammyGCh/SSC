@@ -70,17 +70,17 @@ namespace AccesoADatos.Implementacion
             try
             {
                 conexionMysql = conexion.AbrirConexion();
+
                 query = new MySqlCommand("", conexionMysql)
                 {
                     CommandText = "INSERT INTO " +
-                    "solicitudcambio(solicitudcambio.cambiosSolicitados, solicitudcambio.fecha, solicitudcambio.status, solicitudcambio.idplandecurso) " +
-                    "VALUES (@cambiosSolicitados, @fecha, @status, @idPlanDeCurso)"
+                        "solicitudcambio(solicitudcambio.cambiosSolicitados, solicitudcambio.status, solicitudcambio.idplandecurso) " +
+                        "VALUES (@cambiosSolicitados, @status, @idPlanDeCurso)"
                 };
 
                 query.Parameters.Add("@cambiosSolicitados", MySqlDbType.VarChar, 600).Value = nuevaSolicitud.CambiosSolicitados;
-                query.Parameters.Add("@fecha", MySqlDbType.VarChar, 40).Value = nuevaSolicitud.Fecha;
                 query.Parameters.Add("@status", MySqlDbType.Int32, 11).Value = nuevaSolicitud.Status;
-                query.Parameters.Add("@idPlanDeCurso", MySqlDbType.Int32, 11).Value = nuevaSolicitud.PlanDeCurso;
+                query.Parameters.Add("@idPlanDeCurso", MySqlDbType.Int32, 11).Value = nuevaSolicitud.PlanDeCurso.IdPlanDeCurso;
 
                 query.ExecuteNonQuery();
                 guardado = true;

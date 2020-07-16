@@ -163,7 +163,7 @@ namespace AccesoADatos.Implementacion
                 conexionMysql = conexion.AbrirConexion();
                 query = new MySqlCommand("", conexionMysql)
                 {
-                    CommandText = "SELECT Curso.idCurso, Curso.nombre, Curso.Descripcion, Curso.Turno FROM Curso WHERE curso.docente_iddocente = @idDocente;"
+                    CommandText = "SELECT curso.idCurso, curso.nombre, curso.Descripcion, curso.Turno FROM curso WHERE curso.iddocente = @idDocente;"
                 };
 
                 MySqlParameter personal = new MySqlParameter("@idDocente", MySqlDbType.Int32, 11)
