@@ -9,5 +9,6 @@ namespace AccesoADatos.Interfaces
     {
         bool GuardarDocente(Docente docente);
         List<Docente> ObtenerDocentesActivos();
+        int ExisteDocente(Docente docente);
     }
 }

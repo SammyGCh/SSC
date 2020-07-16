@@ -111,5 +111,131 @@ namespace AccesoADatos.Implementacion
 
             return docentes;
         }
+        
+        public int ExisteDocente(Docente docente)
+        {
+            int existe = 0;
+
+            try
+            {
+                conexionMysql = conexion.AbrirConexion();
+                query = new MySqlCommand("", conexionMysql)
+                {
+                    CommandText = "SELECT COUNT(docente.numeroPersonal) FROM docente WHERE docente.numeroPersonal = @numeroPersonal"
+                };
+
+                query.Parameters.Add("@numeroPersonal", MySqlDbType.VarChar, 10).Value = docente.NumeroPersonal;
+
+                reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    existe = reader.GetInt32(0);
+                }
+            }
+            catch (MySqlException)
+            {
+                throw;
+            }
+            finally
+            {
+                conexion.CerrarConexion();
+            }
+
+            return existe;
+        }
+        
+        public Docente ObtenerDocenteId(int idDocente)
+        {
+            try
+            {
+                conexionMysql = conexion.AbrirConexion();
+                query = new MySqlCommand("", conexionMysql)
+                {
+                    CommandText = "SELECT * from docente WHERE idUsuario = @idDocente"
+                };
+
+                query.Parameters.Add("@idDocente", MySqlDbType.Int32, 2).Value = idDocente;
+
+                reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    docente = new Docente()
+                    {
+                        IdUsuario = reader.GetInt32(0),
+                        Nombres = reader.GetString(1),
+                        Apellidos = reader.GetString(2),
+                        Genero = reader.GetString(3),
+                        CorreoElectronico = reader.GetString(4),
+                        PerfilProfesional = reader.GetString(5),
+                        Rfc = reader.GetString(6),
+                        IdDocente = reader.GetInt32(7)
+                    };
+                }
+            }
+            catch (MySqlException)
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+                conexion.CerrarConexion();
+            }
+
+            return docente;
+        }
+        
+        public Docente ObtenerDocentePorId(int idProfessor)
+        {
+            try
+            {
+                conexionMysql = conexion.AbrirConexion();
+                query = new MySqlCommand("", conexionMysql)
+                {
+                    CommandText = "SELECT usuario.idusuario, usuario.nombres, usuario.apellidos, usuario.genero, usuario.correoElectronico, " +
+                    "usuario.idtipousuario, docente.idusuario, docente.iddocente, cuenta.idusuario, cuenta.status FROM usuario, docente, cuenta " +
+                    "WHERE usuario.idusuario = @idprofessor AND usuario.idtipousuario = @tipousuario"
+                };
+
+                query.Parameters.Add("@idprofessor", MySqlDbType.Int32, 2).Value = idProfessor;
+                query.Parameters.Add("@tipousuario", MySqlDbType.Int32, 2).Value = USUARIO_DOCENTE;
+
+                reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    docente = new Docente()
+                    {
+                        IdUsuario = reader.GetInt32(0),
+                        Nombres = reader.GetString(1),
+                        Apellidos = reader.GetString(2),
+                        Genero = reader.GetString(3),
+                        CorreoElectronico = reader.GetString(4),
+                        IdDocente = reader.GetInt32(7)
+                    };
+                }
+            }
+            catch (MySqlException)
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+                conexion.CerrarConexion();
+            }
+
+            return docente;
+        }
     }
 }

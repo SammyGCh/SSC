@@ -1,0 +1,44 @@
+﻿<Page xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      x:Class="Gui.Paginas.Directivo.InicioDirectivo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Gui.Paginas.Directivo"
+      mc:Ignorable="d" 
+      d:DesignHeight="750" d:DesignWidth="1100"
+      Height="Auto" Width="Auto"
+      Title="InicioDirectivo">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="700" Width="1000">
+        <StackPanel>
+            <TextBlock FontSize="60" FontWeight="Bold" Margin="10,50,0,00">
+                    Bienvenido
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Width="800" Height="400" Orientation="Horizontal" Margin="40">
+            <materialDesign:Card Width="300" Background="#36BD46" HorizontalContentAlignment="Center" Margin="70,0,0,0">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="White">
+                        Cursos
+                    </TextBlock>
+                    <materialDesign:PackIcon Kind="Assignment" HorizontalAlignment="Center" Width="150" Height="150" Foreground="White"/>
+                    <Button Content="Consultar" Width="100" HorizontalAlignment="Center"
+                                Background="#386BEC" BorderBrush="#386BEC" Margin="100,70,100,0"/>
+                </StackPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Width="300" Background="#36BD46" Margin="90,0,0,0">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="White">
+                        Docentes
+                    </TextBlock>
+
+                    <materialDesign:PackIcon Kind="Teacher" HorizontalAlignment="Center" Width="150" Height="150" Foreground="White"/>
+
+                    <Button Content="Consultar" Width="100" HorizontalAlignment="Center"
+                                Background="#386BEC" BorderBrush="#386BEC" Click="ConsultarDocentes" Margin="100,70,100,0"/>
+                </StackPanel>
+            </materialDesign:Card>
+        </StackPanel>
+    </StackPanel>
+</Page>

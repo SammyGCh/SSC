@@ -62,12 +62,14 @@ namespace Gui.Paginas.Profesor
 
         private SolicitudCambio GenerarNuevaSolicitud()
         {
+            PlanDeCursoDAO planDeCursoDAO = new PlanDeCursoDAO();
+
             SolicitudCambio nuevaSolicitud = new SolicitudCambio
             {
                 CambiosSolicitados = cambiosSolicitados.Text,
                 Fecha = DateTime.Now.ToString(),
                 Status = 0,
-                PlanDeCurso = idPlanDeCurso
+                PlanDeCurso = planDeCursoDAO.ObtenerPlanDeCurso(idPlanDeCurso)
             };
 
             return nuevaSolicitud;

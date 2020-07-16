@@ -19,6 +19,7 @@ namespace AccesoADatos.BaseDeDatos
             }
             catch (MySqlException)
             {
+
                 throw;
             }
         }

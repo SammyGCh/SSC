@@ -20,6 +20,47 @@ namespace AccesoADatos.Implementacion
             conexion = new ConexionBD();
         }
 
+        public int ExisteCurso(Curso curso)
+        {
+            int existe = 0;
+
+            try
+            {
+                conexionMysql = conexion.AbrirConexion();
+                query = new MySqlCommand("", conexionMysql)
+                {
+                    CommandText = "SELECT COUNT(curso.nrc), curso.turno, curso.seccion FROM curso WHERE curso.nrc = @nrc AND " +
+                    "curso.turno = @turno AND curso.seccion = @seccion"
+                };
+
+                query.Parameters.Add("@nrc", MySqlDbType.VarChar, 10).Value = curso.Nrc;
+                query.Parameters.Add("@turno", MySqlDbType.VarChar, 10).Value = curso.Turno;
+                query.Parameters.Add("@seccion", MySqlDbType.VarChar, 45).Value = curso.Seccion;
+
+                reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    existe = reader.GetInt32(0);
+                }
+            }
+            catch (MySqlException)
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+                conexion.CerrarConexion();
+            }
+
+            return existe;
+        }
+
         public bool GuardarCurso(Curso curso)
         {
             bool guardado = false;
@@ -67,16 +108,7 @@ namespace AccesoADatos.Implementacion
                 conexionMysql = conexion.AbrirConexion();
                 query = new MySqlCommand("", conexionMysql)
                 {
-                    CommandText = "SELECT " +
-                    "curso.idcurso, " +
-                    "curso.nombre, " +
-                    "curso.descripcion, " +
-                    "curso.nrc, " +
-                    "curso.status, " +
-                    "curso.turno, " +
-                    "curso.seccion " +
-                    "FROM curso " +
-                    "WHERE curso.docente_iddocente = @idDocente;"
+                    CommandText = "SELECT * FROM curso WHERE iddocente = @idDocente;"
                 };
 
                 MySqlParameter personal = new MySqlParameter("@idDocente", MySqlDbType.Int32, 11)
@@ -172,6 +204,69 @@ namespace AccesoADatos.Implementacion
             }
 
             return hayCursos;
+        }
+
+        public Curso GetCursoPorID(int idCurso)
+        {
+            Curso cursoObtenido = null;
+            DocenteDAO docenteDAO = new DocenteDAO();
+
+            try
+            {
+                conexionMysql = conexion.AbrirConexion();
+                query = new MySqlCommand("", conexionMysql)
+                {
+                    CommandText = "SELECT " +
+                    "curso.idcurso, " +
+                    "curso.nombre, " +
+                    "curso.descripcion, " +
+                    "curso.nrc, " +
+                    "curso.status, " +
+                    "curso.turno, " +
+                    "curso.seccion, " +
+                    "curso.idUsuario " +
+                    "FROM curso " +
+                    "WHERE curso.idcurso = @idCurso;"
+                };
+
+                MySqlParameter curso = new MySqlParameter("@idCurso", MySqlDbType.Int32, 11)
+                {
+                    Value = idCurso
+                };
+
+                query.Parameters.Add(curso);
+
+                reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    cursoObtenido = new Curso
+                    {
+                        IdCurso = reader.GetInt32(0),
+                        Nombre = reader.GetString(1),
+                        Descripcion = reader.GetString(2),
+                        Nrc = reader.GetString(3),
+                        Status = reader.GetInt32(4),
+                        Turno = reader.GetString(5),
+                        Seccion = reader.GetString(6),
+                        ImpartidoPor = docenteDAO.ObtenerDocentePorId(reader.GetInt32(7))
+                    };
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+                conexion.CerrarConexion();
+            }
+
+            return cursoObtenido;
         }
     }
 }
