@@ -14,8 +14,8 @@
             VerticalAlignment="Top" FontSize="40" FontWeight="Bold" RenderTransformOrigin="0.508,0.142" Height="54" Width="514"/>
 
             <StackPanel Margin="80">
-                <DataGrid x:Name="tablaDeDocentes" HorizontalAlignment="Center" Height="225"  VerticalAlignment="Top" Width="1100" AutoGenerateColumns="False" Background="#FFFAFAFA" 
-                  CanUserAddRows="false" ScrollViewer.HorizontalScrollBarVisibility="Disabled" RowHeight="100" AlternatingRowBackground="AliceBlue"  >
+                <DataGrid x:Name="tablaDeDocentes" HorizontalAlignment="Center" Height="396"  VerticalAlignment="Top" Width="1100" AutoGenerateColumns="False" Background="#FFFAFAFA" 
+                  CanUserAddRows="false" ScrollViewer.HorizontalScrollBarVisibility="Disabled" RowHeight="100" AlternatingRowBackground="AliceBlue" >
                     <DataGrid.Columns>
 
                         <DataGridTemplateColumn Header=" Nombre Completo"  Width ="150" CanUserResize="False" CanUserSort="False" IsReadOnly="True" CanUserReorder="False" x:Name="nombres">
