@@ -107,6 +107,15 @@
     <Compile Include="Ventanas\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Directivo\ConsultaDocentes.xaml.cs">
+      <DependentUpon>ConsultaDocentes.xaml</DependentUpon>
+    </Compile>
+<Compile Include="Paginas\Directivo\DetallesDocente.xaml.cs">
+      <DependentUpon>DetallesDocente.xaml</DependentUpon>
+    </Compile>
+<Compile Include="Paginas\Directivo\InicioDirectivo.xaml.cs">
+      <DependentUpon>InicioDirectivo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -175,6 +184,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Directivo\ConsultaDocentes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+<Page Include="Paginas\Directivo\DetallesDocente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+<Page Include="Paginas\Directivo\InicioDirectivo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
