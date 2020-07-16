@@ -134,5 +134,61 @@ namespace AccesoADatos.Implementacion
 
             return listaDePlanes;
         }
+
+        public PlanDeCurso ObtenerPlanDeCurso(int idPlanDeCurso)
+        {
+            PlanDeCurso planObtenido = null;
+            CursoDAO cursoDAO = new CursoDAO();
+
+            try
+            {
+                conexionMysql = conexion.AbrirConexion();
+                query = new MySqlCommand("", conexionMysql)
+                {
+                    CommandText = "SELECT " +
+                    "plandecurso.objetivoGeneral, " +
+                    "plandecurso.periodo, " +
+                    "plandecurso.referencias, " +
+                    "plandecurso.idcurso, " +
+                    "plandecurso.nombre " +
+                    "FROM plandecurso WHERE plandecurso.idplandecurso = @idPlanDeCurso;"
+                };
+
+                MySqlParameter idPlan = new MySqlParameter("@idPlanDeCurso", MySqlDbType.Int32, 11)
+                {
+                    Value = idPlanDeCurso
+                };
+
+                query.Parameters.Add(idPlan);
+
+                reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    planObtenido = new PlanDeCurso
+                    {
+                        ObjetivoGeneral = reader.GetString(0),
+                        Periodo = reader.GetString(1),
+                        Referencias = reader.GetString(2),
+                        Curso = cursoDAO.GetCursoPorID(reader.GetInt32(3)),
+                        Nombre = reader.GetString(4)
+                    };
+                }
+            }
+            catch (MySqlException)
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+                conexion.CerrarConexion();
+            }
+
+            return planObtenido;
+        }
     }
 }

@@ -48,5 +48,10 @@ namespace DominioNegocio
             get => pertenece;
             set => pertenece = value;
         }
+
+        public override string ToString()
+        {
+            return Apellidos + " " + Nombres;
+        }
     }
 }

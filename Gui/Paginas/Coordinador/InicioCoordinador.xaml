@@ -1,0 +1,75 @@
+﻿<Page x:Class="Gui.Paginas.Coordinador.InicioCoordinador"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="1100" d:DesignWidth="1300"
+      Title="InicioCoordinador">
+    <ScrollViewer Background="White" HorizontalScrollBarVisibility="Auto">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="1052" Width="1192">
+            <StackPanel>
+                <TextBlock FontSize="60" FontWeight="Bold" Margin="10" Text="Bienvenido Coordinador" Height="82"/>
+            </StackPanel>
+            <StackPanel Height="405" Orientation="Horizontal" Margin="10,40,27,40">
+                <materialDesign:Card Width="300" Background="#36BD46" HorizontalContentAlignment="Center" Margin="70,0,0,0">
+                    <StackPanel>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35" FontWeight="Bold"
+                            Foreground="White" Height="104" Width="270" Text="Planes De Curso Nuevos" TextWrapping="Wrap"/>
+
+                        <materialDesign:PackIcon Kind="Assessment" HorizontalAlignment="Center" Width="150" Height="150" Foreground="White"/>
+                        <Button Content="Consultar" Width="100" HorizontalAlignment="Center" Background="#386BEC" 
+                                BorderBrush="#386BEC" Margin="20" Click="ConsultarPlanes"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <materialDesign:Card Width="300" Background="#36BD46" Margin="90,0,0,0">
+                    <StackPanel>
+                        <TextBlock HorizontalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="White"
+                                   Text="Solicitudes De Cambio" TextWrapping="Wrap"/>
+                        <materialDesign:PackIcon Kind="NewReleases" HorizontalAlignment="Center" Width="150" Height="150" Foreground="White"/>
+
+                        <Button Content="Consultar" Width="100" HorizontalAlignment="Center" Click="ConsultarSolicitudes"
+                                Background="#386BEC" BorderBrush="#386BEC" Margin="35"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <materialDesign:Card Width="300" Background="#36BD46" Margin="90,0,0,0">
+                    <StackPanel>
+                        <TextBlock HorizontalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="White"
+                                   Text="Lista de Docentes" TextWrapping="Wrap"/>
+                        <materialDesign:PackIcon Kind="AssignmentInd" HorizontalAlignment="Center" Width="150" Height="150" Foreground="White" Margin="75,50,75.8,0"/>
+
+                        <Button Content="Consultar" Width="100" HorizontalAlignment="Center" Click="ConsultarDocentes"
+                                Background="#386BEC" BorderBrush="#386BEC" Margin="35"/>
+                    </StackPanel>
+                </materialDesign:Card>
+            </StackPanel>
+
+            <StackPanel Height="405" Orientation="Horizontal" Margin="221,40,27,40">
+                <materialDesign:Card Width="300" Background="#36BD46" HorizontalContentAlignment="Center" Margin="70,0,0,0">
+                    <StackPanel>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35" FontWeight="Bold"
+                            Foreground="White" Height="104" Width="270" Text="Planes De Curso " TextWrapping="Wrap"/>
+
+                        <materialDesign:PackIcon Kind="Teach" HorizontalAlignment="Center" Width="150" Height="150" Foreground="White"/>
+                        <Button Content="Consultar" Width="100" HorizontalAlignment="Center" Background="#386BEC" 
+                                BorderBrush="#386BEC" Margin="20" Click="ConsultarPlanes"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <materialDesign:Card Width="300" Background="#36BD46" Margin="90,0,0,0">
+                    <StackPanel>
+                        <TextBlock HorizontalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="White"
+                                   Text="Reportes de Avances" TextWrapping="Wrap"/>
+                        <materialDesign:PackIcon Kind="FileReport" HorizontalAlignment="Center" Width="150" Height="150" Foreground="White"/>
+
+                        <Button Content="Consultar" Width="100" HorizontalAlignment="Center" Click="ConsultarReportes"
+                                Background="#386BEC" BorderBrush="#386BEC" Margin="35"/>
+                    </StackPanel>
+                </materialDesign:Card>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
