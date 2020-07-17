@@ -70,7 +70,7 @@ namespace AccesoADatos.Implementacion
                 {
                     CommandText = "SELECT usuario.idusuario, usuario.nombres, usuario.apellidos, usuario.genero, usuario.correoElectronico, " +
                     "usuario.idtipousuario, docente.idusuario, docente.iddocente, cuenta.idusuario, cuenta.status FROM usuario, docente, cuenta " +
-                    "WHERE usuario.idusuario = cuenta.idusuario AND cuenta.status = @status AND usuario.idtipousuario = @tipousuario"
+                    "WHERE usuario.idusuario = cuenta.idusuario AND cuenta.status = @status AND usuario.idtipousuario = @tipousuario AND docente.idusuario = usuario.idusuario"
                 };
 
                 query.Parameters.Add("@status", MySqlDbType.Int32, 2).Value = ACTIVO;
