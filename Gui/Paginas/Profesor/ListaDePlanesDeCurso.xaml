@@ -68,10 +68,10 @@
                         </DataGridTemplateColumn>
 
 
-                        <DataGridTemplateColumn  Header="Opciones" Width="350" CanUserResize="False" IsReadOnly="True" CanUserReorder="False" MaxWidth="350">
+                        <DataGridTemplateColumn  Header="Opciones" Width="120" CanUserResize="False" IsReadOnly="True" CanUserReorder="False" MaxWidth="350">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Actualizar" Name="details" Width ="100" MinWidth="100" HorizontalAlignment="Left" Click="SolicitarActualizacion"/>
+                                    <Button Content="Solicitud" Name="details" Width ="100" MinWidth="100" HorizontalAlignment="Left" Click="SolicitarActualizacion"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
 
@@ -84,6 +84,24 @@
                                 </Style>
                             </DataGridTemplateColumn.HeaderStyle>
                         </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="" Width="350" CanUserResize="False" IsReadOnly="True" CanUserReorder="False" MaxWidth="350">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Actualizar" Width ="100" MinWidth="100" Margin="50,0,0,0" HorizontalAlignment="Left"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+
+                            <DataGridTemplateColumn.HeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="#FF5BA1DA"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontSize" Value="24"/>
+                                </Style>
+                            </DataGridTemplateColumn.HeaderStyle>
+                        </DataGridTemplateColumn>
+                        
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
